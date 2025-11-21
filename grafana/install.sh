@@ -20,35 +20,42 @@ cat << EOF > $COMPOSE_FILE
 version: "3.6"
 
 services:
-   loki:
-     image: grafana/loki
-     ports:
-       - "3100:3100"
-     command: -config.file=/etc/loki/local-config.yaml
-     networks:
-       - grafana
+  grafana:
+    image: grafana/grafana
+    restart: unless-stopped
+    networks:
+      - grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - loki
 
-   promtail:
-     image: grafana/promtail
-     volumes:
-       - /var/log:/var/log
-     command: -config.file=/etc/promtail/config.yml
-     networks:
-       - grafana
+  loki:
+    image: grafana/loki
+    restart: unless-stopped
+    ports:
+      - "3100:3100"
+    networks:
+      - grafana
 
-   grafana:
-     image: grafana/grafana
-     restart: unless-stopped
-     networks:
-       - grafana
-     environment:
-       - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN}
-       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
-       - GF_INSTALL_PLUGINS=
-     ports:
-       - '3000:3000'
-     volumes:
-       - grafana_data:/var/lib/grafana
+  promtail:
+    image: grafana/promtail
+    restart: unless-stopped
+    volumes:
+      - /var/log:/var/log
+    networks:
+      - grafana
+
+volumes:
+  grafana_data:
+
+networks:
+  grafana:
 EOF
 
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
