@@ -17,7 +17,7 @@ cd $PROJECT_NAME
 # 2. Créer le fichier docker-compose.yml
 # Cette image exécute un binaire qui affiche le message et s'arrête.
 cat << EOF > $COMPOSE_FILE
-version: "3.4"
+version: "3.6"
 
 services:
    loki:
