@@ -1,2 +1,3 @@
 # kactus
-Repos des different script d'installation de la platforme Kactus
+Repos des differents scripts d'installation de la platforme Kactus
+
