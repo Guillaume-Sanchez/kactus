@@ -4,7 +4,7 @@
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
 
 # --- Configuration ---
-PROJECT_NAME="docker-hello-world"
+PROJECT_NAME="kactus-web"
 COMPOSE_FILE="docker-compose.yml"
 ENV_FILE=".env"
 
