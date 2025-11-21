@@ -21,7 +21,7 @@ version: "3.3"
 
 services:
    loki:
-     image: grafana/loki:latest
+     image: grafana/loki
      ports:
        - "3100:3100"
      command: -config.file=/etc/loki/local-config.yaml
@@ -29,7 +29,7 @@ services:
        - grafana
 
    promtail:
-     image: grafana/promtail:latest
+     image: grafana/promtail
      volumes:
        - /var/log:/var/log
      command: -config.file=/etc/promtail/config.yml
@@ -37,7 +37,7 @@ services:
        - grafana
 
    grafana:
-     image: grafana/grafana:latest
+     image: grafana/grafana
      restart: unless-stopped
      networks:
        - grafana
