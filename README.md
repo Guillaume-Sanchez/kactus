@@ -20,3 +20,26 @@ bash -c "$(curl https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/
 ```
 bash -c "$(curl https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/grafana/install.sh)"
 ```
+
+### Trivy
+
+Usage :
+
+```  
+curl -sL <URL>/trivy-scan.sh | bash -- <command>
+```
+  
+"Commands:
+```
+image <image_name>         - Scan une image Docker"
+container <container_id>   - Scan un conteneur en cours d'exécution"
+help                       - Affiche cette aide"
+```
+Exemples :
+
+```
+curl -sL https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/trivy/trivy-scan.sh | bash -s -- image nginx:latest"
+```
+```
+curl -sL https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/trivy/trivy-scan.sh | bash -s -- container my-app"
+```
