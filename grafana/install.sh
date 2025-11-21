@@ -4,7 +4,7 @@
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
 
 # --- Configuration ---
-PROJECT_NAME="kactus-web"
+PROJECT_NAME="grafana"
 COMPOSE_FILE="docker-compose.yml"
 ENV_FILE=".env"
 
@@ -17,32 +17,42 @@ cd $PROJECT_NAME
 # 2. Créer le fichier docker-compose.yml
 # Cette image exécute un binaire qui affiche le message et s'arrête.
 cat << EOF > $COMPOSE_FILE
-version: '2'
+version: "3.3"
+
+networks:
+  grafana:
 
 services:
-   db:
-     image: mariadb:latest
-     volumes:
-       - db_data:/var/lib/mysql
-     restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
-       MYSQL_DATABASE: ${MYSQL_DATABASE}
-       MYSQL_USER: ${MYSQL_USER}
-       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  loki:
+    image: grafana/loki:latest
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - grafana
 
-   wordpress:
-     image: wordpress:latest
-     ports:
-       - 80
-     restart: always
-     environment:
-       WORDPRESS_DB_HOST: db:3306
-       WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
-       WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+  promtail:
+    image: grafana/promtail:latest
+    volumes:
+      - /var/log:/var/log
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - grafana
 
-volumes:
-    db_data:
+   grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: unless-stopped
+    networks:
+      - grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=${grafana_admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${grafana_password}
+      - GF_INSTALL_PLUGINS=
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana_data:/var/lib/grafana
 EOF
 
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
@@ -51,20 +61,11 @@ echo "---"
 
 # 3. Créer le fichier .env
 #Demander à l'utilisateur de saisir le mot de passe root de la base de données
+read -p "Veuillez entrer l'ad : " USER_SAISI
 read -p "Veuillez entrer le mot de passe root de la base de données : " MOT_DE_PASSE_SAISI
-
-#Génération d'un mot de passe aléatoire
-LONGUEUR_PASS=20
-CHARSET='a-zA-Z0-9!@#$%^&*()_+-='
-MOT_DE_PASSE=$(cat /dev/urandom | tr -dc "$CHARSET" | head -c $LONGUEUR_PASS)
-
 cat << EOF > $ENV_FILE
-MYSQL_ROOT_PASSWORD=\"$MOT_DE_PASSE_SAISI\"
-MYSQL_DATABASE=wordpress
-MYSQL_USER=kactus
-MYSQL_PASSWORD=\"$MOT_DE_PASSE\"
-WORDPRESS_DB_USER=kactus
-WORDPRESS_DB_PASSWORD=\"$MOT_DE_PASSE\"
+grafana_admin=\"$USER_SAISI"\
+grafana_password=\"$MOT_DE_PASSE_SAISI\"
 EOF
 
 # 4. Exécuter Docker Compose
@@ -82,4 +83,4 @@ echo "🧹 Nettoyage des ressources ..."
 cd ..
 rm -rf $PROJECT_NAME
 
-echo "✨ Terminé ! Le projet Kactus Web a été configuré et les ressources sont nettoyées."
+echo "✨ Terminé ! Grafana et Loki ont été configurés et les ressources sont nettoyées."
