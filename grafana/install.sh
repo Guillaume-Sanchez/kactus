@@ -19,9 +19,6 @@ cd $PROJECT_NAME
 cat << EOF > $COMPOSE_FILE
 version: "3.3"
 
-networks:
-  grafana:
-
 services:
   loki:
     image: grafana/loki:latest
@@ -40,14 +37,13 @@ services:
       - grafana
 
    grafana:
-    image: grafana/grafana
-    container_name: grafana
+    image: grafana/grafana:latest
     restart: unless-stopped
     networks:
       - grafana
     environment:
-      - GF_SECURITY_ADMIN_USER=${grafana_admin}
-      - GF_SECURITY_ADMIN_PASSWORD=${grafana_password}
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
       - GF_INSTALL_PLUGINS=
     ports:
       - '3000:3000'
@@ -61,11 +57,11 @@ echo "---"
 
 # 3. Créer le fichier .env
 #Demander à l'utilisateur de saisir le mot de passe root de la base de données
-read -p "Veuillez entrer l'ad : " USER_SAISI
-read -p "Veuillez entrer le mot de passe root de la base de données : " MOT_DE_PASSE_SAISI
+read -p "Veuillez entrer le login administrateur : " USER_SAISI
+read -p "Veuillez entrer le mot de passe administrateur : " MOT_DE_PASSE_SAISI
 cat << EOF > $ENV_FILE
-grafana_admin=\"$USER_SAISI"\
-grafana_password=\"$MOT_DE_PASSE_SAISI\"
+GRAFANA_ADMIN=\"$USER_SAISI"\
+GRAFANA_PASSWORD=\"$MOT_DE_PASSE_SAISI\"
 EOF
 
 # 4. Exécuter Docker Compose

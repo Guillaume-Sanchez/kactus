@@ -14,3 +14,9 @@ bash -c "$(curl https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/
 ```
 bash -c "$(curl https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/kactus-web/install.sh)"
 ```
+
+### Grafana & Loki
+
+```
+bash -c "$(curl https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/grafana/install.sh)"
+```
