@@ -91,7 +91,7 @@ docker compose start
 # 5. Nettoyage
 echo "🧹 Nettoyage des ressources ..."
 # Revenir au répertoire précédent et supprimer le répertoire de travail
-cd ..
-rm -rf $PROJECT_NAME
+# cd ..
+# rm -rf $PROJECT_NAME
 
 echo "✨ Terminé ! PhpIPAM a bien été configurés et les ressources sont nettoyées."
