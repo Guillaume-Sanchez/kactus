@@ -25,7 +25,7 @@ services:
      environment:
        - TZ=Europe/London
        - IPAM_DATABASE_HOST=phpipam-mariadb
-       - IPAM_DATABASE_PASS=${IPAM_DATABASE_PASS}
+       - IPAM_DATABASE_PASS=test
        - IPAM_DATABASE_WEBHOST=%
      restart: unless-stopped
      volumes:
@@ -42,7 +42,7 @@ services:
      environment:
        - TZ=Europe/London
        - IPAM_DATABASE_HOST=phpipam-mariadb
-       - IPAM_DATABASE_PASS=${IPAM_DATABASE_PASS}
+       - IPAM_DATABASE_PASS=test
        - SCAN_INTERVAL=1h
      restart: unless-stopped
      volumes:
@@ -56,7 +56,7 @@ services:
    phpipam-mariadb:
      image: mariadb:latest
      environment:
-       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+       - MYSQL_ROOT_PASSWORD=test
      restart: unless-stopped
      volumes:
        - phpipam-db-data:/var/lib/mysql
@@ -92,7 +92,7 @@ docker compose start
 # 5. Nettoyage
 echo "🧹 Nettoyage des ressources ..."
 # Revenir au répertoire précédent et supprimer le répertoire de travail
-# cd ..
-# rm -rf $PROJECT_NAME
+cd ..
+rm -rf $PROJECT_NAME
 
 echo "✨ Terminé ! PhpIPAM a bien été configurés et les ressources sont nettoyées."
