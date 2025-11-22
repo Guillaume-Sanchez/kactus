@@ -17,54 +17,59 @@ cd $PROJECT_NAME
 # 2. Créer le fichier docker-compose.yml
 # Cette image exécute un binaire qui affiche le message et s'arrête.
 cat << EOF > $COMPOSE_FILE
+# WARNING: Replace the example passwords with secure secrets.
+# WARNING: 'my_secret_phpipam_pass' and 'my_secret_mysql_root_pass'
+
+version: '3'
+
 services:
-   phpipam-web:
-     image: phpipam/phpipam-www:latest
-     ports:
+  phpipam-web:
+    image: phpipam/phpipam-www:latest
+    ports:
       - "8080:80"
-     environment:
-       - TZ=Europe/London
-       - IPAM_DATABASE_HOST=phpipam-mariadb
-       - IPAM_DATABASE_PASS=${PASSWORD_DB}
-       - IPAM_DATABASE_WEBHOST=%
-     restart: unless-stopped
-     volumes:
-       - phpipam-logo:/phpipam/css/images/logo
-       - phpipam-ca:/usr/local/share/ca-certificates:ro
-     depends_on:
-       - phpipam-mariadb
-     cap_add:
-       - NET_ADMIN
-       - NET_RAW
+    environment:
+      - TZ=Europe/London
+      - IPAM_DATABASE_HOST=phpipam-mariadb
+      - IPAM_DATABASE_PASS=my_secret_phpipam_pass
+      - IPAM_DATABASE_WEBHOST=%
+    restart: unless-stopped
+    volumes:
+      - phpipam-logo:/phpipam/css/images/logo
+      - phpipam-ca:/usr/local/share/ca-certificates:ro
+    depends_on:
+      - phpipam-mariadb
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
 
-   phpipam-cron:
-     image: phpipam/phpipam-cron:latest
-     environment:
-       - TZ=Europe/London
-       - IPAM_DATABASE_HOST=phpipam-mariadb
-       - IPAM_DATABASE_PASS=${PASSWORD_DB}
-       - SCAN_INTERVAL=1h
-     restart: unless-stopped
-     volumes:
-       - phpipam-ca:/usr/local/share/ca-certificates:ro
-     depends_on:
-       - phpipam-mariadb
-     cap_add:
-       - NET_ADMIN
-       - NET_RAW
+  phpipam-cron:
+    image: phpipam/phpipam-cron:latest
+    environment:
+      - TZ=Europe/London
+      - IPAM_DATABASE_HOST=phpipam-mariadb
+      - IPAM_DATABASE_PASS=my_secret_phpipam_pass
+      - SCAN_INTERVAL=1h
+    restart: unless-stopped
+    volumes:
+      - phpipam-ca:/usr/local/share/ca-certificates:ro
+    depends_on:
+      - phpipam-mariadb
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
 
-   phpipam-mariadb:
-     image: mariadb:latest
-     environment:
-       - MYSQL_ROOT_PASSWORD=${PASSWORD_DB}
-     restart: unless-stopped
-     volumes:
-       - phpipam-db-data:/var/lib/mysql
+  phpipam-mariadb:
+    image: mariadb:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=my_secret_mysql_root_pass
+    restart: unless-stopped
+    volumes:
+      - phpipam-db-data:/var/lib/mysql
 
 volumes:
-   phpipam-db-data:
-   phpipam-logo:
-   phpipam-ca:
+  phpipam-db-data:
+  phpipam-logo:
+  phpipam-ca:
 EOF
 
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
@@ -73,11 +78,11 @@ echo "---"
 
 # 3. Créer le fichier .env
 #Demander à l'utilisateur de saisir le mot de passe root de la base de données
-read -p "Veuillez entrer le mot de passe root de la base de données : " MOT_DE_PASSE_SAISI
+# read -p "Veuillez entrer le mot de passe root de la base de données : " MOT_DE_PASSE_SAISI
 
-cat << EOF > $ENV_FILE
-PASSWORD_DB=\"$MOT_DE_PASSE_SAISI\"
-EOF
+# cat << EOF > $ENV_FILE
+# PASSWORD_DB=\"$MOT_DE_PASSE_SAISI\"
+# EOF
 
 # 4. Exécuter Docker Compose
 # -d pour détacher (pas nécessaire ici pour hello-world, mais bonne pratique)
