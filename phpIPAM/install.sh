@@ -56,7 +56,7 @@ services:
   phpipam-mariadb:
     image: mariadb:latest
     environment:
-      - MYSQL_ROOT_PASSWORD=${PASSWORD_ROOT_DB}
+      - MYSQL_ROOT_PASSWORD: ${PASSWORD_ROOT_DB}
     restart: unless-stopped
     volumes:
       - phpipam-db-data:/var/lib/mysql
@@ -77,7 +77,6 @@ read -p "Veuillez entrer le mot de passe root de la base de données : " MOT_DE_
 
 cat << EOF > $ENV_FILE
 PASSWORD_ROOT_DB=$MOT_DE_PASSE_SAISI
-PETIT_MSG_DEBUG="SALUT!"
 EOF
 
 # 4. Exécuter Docker Compose
