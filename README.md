@@ -26,7 +26,7 @@ bash -c "$(curl https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/
 Usage :
 
 ```  
-curl -sL <URL>/trivy-scan.sh | bash -- <command>
+curl -sL https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/trivy/trivy-scan.sh | bash -- <command>
 ```
   
 "Commands:
