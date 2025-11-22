@@ -77,6 +77,7 @@ read -p "Veuillez entrer le mot de passe root de la base de données : " MOT_DE_
 
 cat << EOF > $ENV_FILE
 PASSWORD_ROOT_DB=$MOT_DE_PASSE_SAISI
+PETIT_MSG_DEBUG="SALUT!"
 EOF
 
 # 4. Exécuter Docker Compose
