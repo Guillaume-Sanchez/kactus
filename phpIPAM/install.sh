@@ -18,13 +18,13 @@ cd $PROJECT_NAME
 # Cette image exécute un binaire qui affiche le message et s'arrête.
 cat << EOF > $COMPOSE_FILE
 services:
-   phpipam-web:
+   web:
      image: phpipam/phpipam-www:latest
      ports:
        - "8080:80"
      environment:
        - TZ=Europe/London
-       - IPAM_DATABASE_HOST=phpipam-mariadb
+       - IPAM_DATABASE_HOST=phpipamdb
        - IPAM_DATABASE_PASS=test
        - IPAM_DATABASE_WEBHOST=%
      restart: unless-stopped
@@ -32,28 +32,28 @@ services:
        - phpipam-logo:/phpipam/css/images/logo
        - phpipam-ca:/usr/local/share/ca-certificates:ro
      depends_on:
-       - phpipam-mariadb
+       - phpipamdb
      cap_add:
        - NET_ADMIN
        - NET_RAW
 
-   phpipam-cron:
+   cron:
      image: phpipam/phpipam-cron:latest
      environment:
        - TZ=Europe/London
-       - IPAM_DATABASE_HOST=phpipam-mariadb
+       - IPAM_DATABASE_HOST=phpipamdb
        - IPAM_DATABASE_PASS=test
        - SCAN_INTERVAL=1h
      restart: unless-stopped
      volumes:
        - phpipam-ca:/usr/local/share/ca-certificates:ro
      depends_on:
-       - phpipam-mariadb
+       - phpipamdb
      cap_add:
        - NET_ADMIN
        - NET_RAW
 
-   phpipam-mariadb:
+   phpipamdb:
      image: mariadb:latest
      environment:
        - MYSQL_ROOT_PASSWORD=test
