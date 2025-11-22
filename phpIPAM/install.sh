@@ -21,7 +21,7 @@ services:
    phpipam-web:
      image: phpipam/phpipam-www:latest
      ports:
-      - "8080:80"
+      - "8080:8080"
      environment:
        - TZ=Europe/London
        - IPAM_DATABASE_HOST=phpipam-mariadb
