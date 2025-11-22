@@ -24,15 +24,15 @@ services:
        - "8080:80"
      environment:
        - TZ=Europe/London
-       - IPAM_DATABASE_HOST=phpipamdb
-       - IPAM_DATABASE_PASS=test
+       - IPAM_DATABASE_HOST=db
+       - IPAM_DATABASE_PASS=aucuneidee
        - IPAM_DATABASE_WEBHOST=%
      restart: unless-stopped
      volumes:
        - phpipam-logo:/phpipam/css/images/logo
        - phpipam-ca:/usr/local/share/ca-certificates:ro
      depends_on:
-       - phpipamdb
+       - db
      cap_add:
        - NET_ADMIN
        - NET_RAW
@@ -41,22 +41,22 @@ services:
      image: phpipam/phpipam-cron:latest
      environment:
        - TZ=Europe/London
-       - IPAM_DATABASE_HOST=phpipamdb
-       - IPAM_DATABASE_PASS=test
+       - IPAM_DATABASE_HOST=db
+       - IPAM_DATABASE_PASS=aucuneidee
        - SCAN_INTERVAL=1h
      restart: unless-stopped
      volumes:
        - phpipam-ca:/usr/local/share/ca-certificates:ro
      depends_on:
-       - phpipamdb
+       - db
      cap_add:
        - NET_ADMIN
        - NET_RAW
 
-   phpipamdb:
+   db:
      image: mariadb:latest
      environment:
-       - MYSQL_ROOT_PASSWORD=test
+       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
      restart: unless-stopped
      volumes:
        - phpipam-db-data:/var/lib/mysql
@@ -76,8 +76,7 @@ echo "---"
 read -p "Veuillez entrer le mot de passe root de la base de données : " MOT_DE_PASSE_SAISI
 
 cat << EOF > $ENV_FILE
-MYSQL_ROOT_PASSWORD=\"$MOT_DE_PASSE_SAISI\"
-IPAM_DATABASE_PASS=\"$MOT_DE_PASSE_SAISI\"
+MYSQL_ROOT_PASSWORD=$MOT_DE_PASSE_SAISI
 EOF
 
 # 4. Exécuter Docker Compose
