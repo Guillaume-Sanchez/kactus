@@ -24,9 +24,9 @@ services:
        - "8080:80"
      environment:
        - TZ=Europe/London
-       - IPAM_DATABASE_HOST=phpipam-mariadb
-       - IPAM_DATABASE_PASS=my_secret_phpipam_pass
-       - IPAM_DATABASE_WEBHOST=%
+       - IPAM_DATABASE_HOST: phpipam-mariadb
+       - IPAM_DATABASE_PASS: ${IPAM_DATABASE_PASS}
+       - IPAM_DATABASE_WEBHOST: %
      restart: unless-stopped
      volumes:
        - phpipam-logo:/phpipam/css/images/logo
@@ -40,9 +40,9 @@ services:
    phpipam-cron:
      image: phpipam/phpipam-cron:latest
      environment:
-       - TZ=Europe/London
-       - IPAM_DATABASE_HOST=phpipam-mariadb
-       - IPAM_DATABASE_PASS: my_secret_phpipam_pass
+       - TZ: Europe/London
+       - IPAM_DATABASE_HOST: phpipam-mariadb
+       - IPAM_DATABASE_PASS: ${IPAM_DATABASE_PASS}
        - SCAN_INTERVAL=1h
      restart: unless-stopped
      volumes:
@@ -56,7 +56,7 @@ services:
    phpipam-mariadb:
      image: mariadb:latest
      environment:
-       - MYSQL_ROOT_PASSWORD: ${PASSWORD_ROOT_DB}
+       - MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
      restart: unless-stopped
      volumes:
        - phpipam-db-data:/var/lib/mysql
