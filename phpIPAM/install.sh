@@ -25,7 +25,7 @@ services:
     environment:
       - TZ=Europe/London
       - IPAM_DATABASE_HOST=phpipam-mariadb
-      - IPAM_DATABASE_PASS= ${PASSWORD_ROOT_DB}
+      - IPAM_DATABASE_PASS=my_secret_phpipam_pass
       - IPAM_DATABASE_WEBHOST=%
     restart: unless-stopped
     volumes:
@@ -42,7 +42,7 @@ services:
     environment:
       - TZ=Europe/London
       - IPAM_DATABASE_HOST=phpipam-mariadb
-      - IPAM_DATABASE_PASS= ${PASSWORD_ROOT_DB}
+      - IPAM_DATABASE_PASS=my_secret_phpipam_pass
       - SCAN_INTERVAL=1h
     restart: unless-stopped
     volumes:
