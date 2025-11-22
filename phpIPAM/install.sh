@@ -4,7 +4,7 @@
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
 
 # --- Configuration ---
-PROJECT_NAME="prometheus"
+PROJECT_NAME="phpipam"
 COMPOSE_FILE="docker-compose.yml"
 ENV_FILE=".env"
 
@@ -96,4 +96,4 @@ echo "🧹 Nettoyage des ressources ..."
 cd ..
 rm -rf $PROJECT_NAME
 
-echo "✨ Terminé ! Prometheus a bien été configurés et les ressources sont nettoyées."
+echo "✨ Terminé ! PhpIPAM a bien été configurés et les ressources sont nettoyées."
