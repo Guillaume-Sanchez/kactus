@@ -21,6 +21,18 @@ bash -c "$(curl https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/
 bash -c "$(curl https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/grafana/install.sh)"
 ```
 
+### Prometheus
+
+```
+bash -c "$(curl https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/prometheus/install.sh)"
+```
+
+### phpIPAM
+
+```
+bash -c "$(curl https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/phpIPAM/install.sh)"
+```
+
 ### Trivy
 
 Usage :
@@ -29,7 +41,7 @@ Usage :
 curl -sL https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/trivy/trivy-scan.sh | bash -- <command>
 ```
   
-"Commands:
+Commandes :
 ```
 image <image_name>         - Scan une image Docker"
 container <container_id>   - Scan un conteneur en cours d'exécution"
