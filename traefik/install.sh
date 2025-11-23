@@ -27,7 +27,7 @@ services:
       - "--api.insecure=true"
       - "--providers.docker=true"
     ports:
-      - "8080:8080"
+      - "81:8080"
       - "80:80"
       - "443:443"
     volumes:
