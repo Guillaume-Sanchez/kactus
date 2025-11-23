@@ -30,6 +30,8 @@ services:
        MYSQL_DATABASE: ${MYSQL_DATABASE}
        MYSQL_USER: ${MYSQL_USER}
        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+     networks:
+       - frontend
      labels:
        # Empêche Traefik de configurer ce conteneur comme un Service HTTP/route
        - "traefik.enable=false"
@@ -43,9 +45,14 @@ services:
        WORDPRESS_DB_HOST: db:3306
        WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
        WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+     networks:
+       - frontend
 
 volumes:
     db_data:
+networks:
+  frontend:
+    external: true
 EOF
 
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
