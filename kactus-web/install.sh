@@ -39,7 +39,7 @@ services:
    wordpress:
      image: wordpress:latest
      ports:
-       - 80
+       - 80:32774
      restart: always
      environment:
        WORDPRESS_DB_HOST: db:3306
@@ -49,7 +49,7 @@ services:
        - frontend
      labels:
        - "traefik.enable=true"
-       - "traefik.http.routers.wordpress.rule=Host(`wp.192.168.1.242.nip.io`)"
+       - "traefik.http.routers.wordpress.rule=Host(`192.168.1.242:32774`)"
        - "traefik.http.routers.wordpress.entrypoints=web"
 
 volumes:
