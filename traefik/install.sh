@@ -27,6 +27,7 @@ services:
       - "--api.insecure=true"
       - "--providers.docker=true"
     ports:
+      - "8080:8080"
       - "80:80"
       - "443:443"
     volumes:
@@ -54,6 +55,8 @@ api:
   dashboard: true
   insecure: true
 entryPoints:
+  traefik:
+    address: ":8080"
   web:
     address: ":80"
   websecure:
