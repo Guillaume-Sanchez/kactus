@@ -19,39 +19,15 @@ cat << EOF > $COMPOSE_FILE
 services:
   traefik:
     image: traefik:latest
-    container_name: traefik
     command:
+      - "--api.insecure=true"
       - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
-      - "--entrypoints.websecure.address=:443"
-
-      # Dashboard
-      - "--api.dashboard=true"
-      - "--certificatesresolvers.le.acme.email=sanchez.guillaume116@gmail.com"
-      - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
-      - "--certificatesresolvers.le.acme.tlschallenge=true"
-
     ports:
       - "80:80"
-      - "443:443"
+      - "8080:8080"
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "./letsencrypt:/letsencrypt"
-
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.traefik.rule=Host(`192.16.1.242.nip.io`)"
-      - "traefik.http.routers.traefik.entrypoints=websecure"
-      - "traefik.http.routers.traefik.tls=true"
-      - "traefik.http.routers.traefik.service=api@internal"
-
-    networks:
-      - web
-
-networks:
-  web:
-    driver: bridge
+      - /var/run/docker.sock:/var/run/docker.sock
 EOF
 
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
