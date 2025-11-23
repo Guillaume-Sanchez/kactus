@@ -54,9 +54,6 @@ services:
 
 volumes:
     db_data:
-networks:
-  frontend:
-    external: true
 EOF
 
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
@@ -64,7 +61,7 @@ cat $COMPOSE_FILE
 echo "---"
 
 # 3. Créer le fichier .env
-#Demander à l'utilisateur de saisir le mot de passe root de la base de donnnnnnnées
+#Demander à l'utilisateur de saisir le mot de passe root de la base de données
 read -p "Veuillez entrer le mot de passe root de la base de données : " MOT_DE_PASSE_SAISI
 
 #Génération d'un mot de passe aléatoire
