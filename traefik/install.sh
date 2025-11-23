@@ -33,10 +33,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.yml:/etc/traefik/traefik.yml:ro
     neyworks:
-      - kactus-web_default
+      - frontend
     restart: unless-stopped
 networks:
-  kactus-web_default:
+  frontend:
     external: true
 EOF
 
