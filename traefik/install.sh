@@ -41,7 +41,7 @@ services:
 
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.192.16.1.50.nip.io`)"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.192.16.1.242.nip.io`)"
       - "traefik.http.routers.traefik.entrypoints=websecure"
       - "traefik.http.routers.traefik.tls=true"
       - "traefik.http.routers.traefik.service=api@internal"
