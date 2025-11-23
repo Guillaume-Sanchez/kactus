@@ -64,7 +64,7 @@ cat $COMPOSE_FILE
 echo "---"
 
 # 3. Créer le fichier .env
-#Demander à l'utilisateur de saisir le mot de passe root de la base de données
+#Demander à l'utilisateur de saisir le mot de passe root de la base de donnnnnnnées
 read -p "Veuillez entrer le mot de passe root de la base de données : " MOT_DE_PASSE_SAISI
 
 #Génération d'un mot de passe aléatoire
