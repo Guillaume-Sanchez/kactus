@@ -16,8 +16,6 @@ cd $PROJECT_NAME
 # 2. Créer le fichier docker-compose.yml
 # Cette image exécute un binaire qui affiche le message et s'arrête.
 cat << EOF > $COMPOSE_FILE
-version: "3.8"
-
 services:
    traefik:
      image: traefik:latest
@@ -43,7 +41,7 @@ services:
        - "./letsencrypt:/letsencrypt"
      labels:
        - "traefik.enable=true"
-       - "traefik.http.routers.traefik.rule=Host(`traefik.localhost`)"
+       - "traefik.http.routers.traefik.rule=Host(`traefik.192.169.1.242.nip.io`)"
        - "traefik.http.routers.traefik.entrypoints=websecure"
        - "traefik.http.routers.traefik.tls.certresolver=le"
        - "traefik.http.routers.traefik.service=api@internal"
