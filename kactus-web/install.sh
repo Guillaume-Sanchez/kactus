@@ -30,6 +30,9 @@ services:
        MYSQL_DATABASE: ${MYSQL_DATABASE}
        MYSQL_USER: ${MYSQL_USER}
        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+     labels:
+       # Empêche Traefik de configurer ce conteneur comme un Service HTTP/route
+       - "traefik.enable=false"
 
    wordpress:
      image: wordpress:latest

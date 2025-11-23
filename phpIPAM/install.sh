@@ -52,6 +52,9 @@ services:
      cap_add:
        - NET_ADMIN
        - NET_RAW
+     labels:
+       # Empêche Traefik de configurer ce conteneur comme un Service HTTP/route
+       - "traefik.enable=false"
 
    db:
      image: mariadb:latest
@@ -60,6 +63,9 @@ services:
      restart: unless-stopped
      volumes:
        - phpipam-db-data:/var/lib/mysql
+     labels:
+       # Empêche Traefik de configurer ce conteneur comme un Service HTTP/route
+       - "traefik.enable=false"
 
 volumes:
    phpipam-db-data:

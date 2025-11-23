@@ -50,6 +50,9 @@ services:
       - /var/log:/var/log
     networks:
       - grafana
+    labels:
+      # Empêche Traefik de configurer ce conteneur comme un Service HTTP/route
+      - "traefik.enable=false"
 
 volumes:
   grafana_data:
