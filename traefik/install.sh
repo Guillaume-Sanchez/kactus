@@ -17,34 +17,41 @@ cd $PROJECT_NAME
 # Cette image exécute un binaire qui affiche le message et s'arrête.
 cat << EOF > $COMPOSE_FILE
 services:
-   traefik:
-     image: traefik:latest
-     container_name: traefik
-     command:
-       - "--providers.docker=true"
-       - "--providers.docker.exposedbydefault=false"
-      
-       - "--entrypoints.web.address=:80"
-       - "--entrypoints.websecure.address=:443"
+  traefik:
+    image: traefik:latest
+    container_name: traefik
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
 
-       - "--certificatesresolvers.le.acme.httpchallenge=true"
-       - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
-       - "--certificatesresolvers.le.acme.email=sanchez.guillaume116@gmail.com"
-       - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
+      # Dashboard
+      - "--api.dashboard=true"
+      - "--certificatesresolvers.le.acme.email=sanchez.guillaume116@gmail.com"
+      - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
+      - "--certificatesresolvers.le.acme.tlschallenge=true"
 
-       - "--api.dashboard=true"
-     ports:
-       - "80:80"
-       - "443:443"
-     volumes:
-       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-       - "./letsencrypt:/letsencrypt"
-     labels:
-       - "traefik.enable=true"
-       - "traefik.http.routers.traefik.rule=Host(`traefik.192.169.1.242.nip.io`)"
-       - "traefik.http.routers.traefik.entrypoints=websecure"
-       - "traefik.http.routers.traefik.tls.certresolver=le"
-       - "traefik.http.routers.traefik.service=api@internal"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./letsencrypt:/letsencrypt"
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.192.16.1.50.nip.io`)"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.traefik.tls=true"
+      - "traefik.http.routers.traefik.service=api@internal"
+
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge
 EOF
 
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
