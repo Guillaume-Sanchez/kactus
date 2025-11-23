@@ -43,7 +43,7 @@ docker compose up --force-recreate --build --no-start
 docker compose start
 
 # 4. Nettoyage
-echo "🧹 Nettoyage des ressources ..."
+echo "🧹 Nettoyage des ressources ... ta mere"
 # Revenir au répertoire précédent et supprimer le répertoire de travail
 cd ..
 rm -rf $PROJECT_NAME
