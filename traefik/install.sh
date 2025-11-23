@@ -70,3 +70,5 @@ docker compose up --force-recreate --build --no-start
 docker compose start
 
 echo "✨ Terminé ! Traefik a bien été configurés et les ressources sont nettoyées."
+
+# Pour quoi ca veut pas ?
