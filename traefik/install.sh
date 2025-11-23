@@ -24,7 +24,6 @@ services:
   traefik:
     image: traefik:latest
     command:
-      - "--api.insecure=true"
       - "--providers.docker=true"
     ports:
       - "81:8080"

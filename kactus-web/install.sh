@@ -47,6 +47,10 @@ services:
        WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
      networks:
        - frontend
+     labels:
+       - "traefik.enable=true"
+       - "traefik.http.routers.wordpress.rule=Host(`wp.192.168.1.242.nip.io`)"
+       - "traefik.http.routers.wordpress.entrypoints=web"
 
 volumes:
     db_data:
