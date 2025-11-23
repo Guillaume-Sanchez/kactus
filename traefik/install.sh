@@ -22,7 +22,7 @@ version: "3.8"
 services:
    traefik:
      image: traefik:latest
-    container_name: traefik
+     container_name: traefik
      command:
        - "--providers.docker=true"
        - "--providers.docker.exposedbydefault=false"
