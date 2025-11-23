@@ -9,6 +9,7 @@ echo "NIQUE TA MERE"
 # --- Configuration ---
 PROJECT_NAME="traefik"
 COMPOSE_FILE="docker-compose.yml"
+CONFIG_FILE="traefik.yml"
 
 echo "🚀 Préparation du projet Docker Compose..."
 
@@ -25,17 +26,40 @@ services:
     command:
       - "--api.insecure=true"
       - "--providers.docker=true"
-      - "--entrypoints.web.address=:80"
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.yml:/etc/traefik/traefik.yml:ro
+    neyworks:
+      - kactus-web_default
+    restart: unless-stopped
+networks:
+  kactus-web_default:
+    external: true
 EOF
 
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
 cat $COMPOSE_FILE
 echo "---"
+
+cat << EOF > $CONFIG_FILE
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+log:
+  level: DEBUG
+api:
+  dashboard: true
+  insecure: true
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+EOF
+
 # 3. Exécuter Docker Compose
 # -d pour détacher (pas nécessaire ici pour hello-world, mais bonne pratique)
 # --rm pour nettoyer le conteneur après l'arrêt (utile pour ce cas simple)
