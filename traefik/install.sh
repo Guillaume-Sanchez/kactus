@@ -3,6 +3,9 @@
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
 
+echo "Bienvenue dans le script d'installation de Traefik avec Docker Compose !"
+echo "NIQUE TA MERE"
+
 # --- Configuration ---
 PROJECT_NAME="traefik"
 COMPOSE_FILE="docker-compose.yml"
