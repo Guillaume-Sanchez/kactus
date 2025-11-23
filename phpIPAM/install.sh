@@ -79,6 +79,8 @@ cat << EOF > $ENV_FILE
 MYSQL_ROOT_PASSWORD=$MOT_DE_PASSE_SAISI
 EOF
 
+chmod 600 $ENV_FILE
+
 # 4. Exécuter Docker Compose
 # -d pour détacher (pas nécessaire ici pour hello-world, mais bonne pratique)
 # --rm pour nettoyer le conteneur après l'arrêt (utile pour ce cas simple)
@@ -87,11 +89,5 @@ echo "▶️ Lancement de 'docker compose up'"
 # On n'utilise pas -d pour voir la sortie immédiatement
 docker compose up --force-recreate --build --no-start
 docker compose start
-
-# 5. Nettoyage
-echo "🧹 Nettoyage des ressources ..."
-# Revenir au répertoire précédent et supprimer le répertoire de travail
-cd ..
-rm -rf $PROJECT_NAME
 
 echo "✨ Terminé ! PhpIPAM a bien été configurés et les ressources sont nettoyées."

@@ -11,6 +11,7 @@ scripts=(
   ["Installer grafana et Loki"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/grafana/install.sh"
   ["Installer Prometheus"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/prometheus/install.sh"
   ["Installer PhpIPAM"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/phpIPAM/install.sh"
+  ["Installer Traefik"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/traefik/install.sh"
 )
 
 # --- Fonction d'exécution d'un script distant ---

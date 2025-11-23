@@ -56,10 +56,4 @@ echo "▶️ Lancement de 'docker compose up'"
 docker compose up --force-recreate --build --no-start
 docker compose start
 
-# 5. Nettoyage
-echo "🧹 Nettoyage des ressources ..."
-# Revenir au répertoire précédent et supprimer le répertoire de travail
-cd ..
-rm -rf $PROJECT_NAME
-
 echo "✨ Terminé ! Prometheus a bien été configurés et les ressources sont nettoyées."
