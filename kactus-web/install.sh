@@ -17,8 +17,6 @@ cd $PROJECT_NAME
 # 2. Créer le fichier docker-compose.yml
 # Cette image exécute un binaire qui affiche le message et s'arrête.
 cat << EOF > $COMPOSE_FILE
-version: '2'
-
 services:
    db:
      image: mariadb:latest
@@ -32,9 +30,6 @@ services:
        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
      networks:
        - frontend
-     labels:
-       # Empêche Traefik de configurer ce conteneur comme un Service HTTP/route
-       - "traefik.enable=false"
 
    wordpress:
      image: wordpress:latest
@@ -47,13 +42,12 @@ services:
        WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
      networks:
        - frontend
-     labels:
-       - "traefik.enable=true"
-       - "traefik.http.routers.wordpress.rule=Host(`192.168.1.242:32774`)"
-       - "traefik.http.routers.wordpress.entrypoints=web"
 
 volumes:
     db_data:
+networks:
+  frontend:
+    external: true
 EOF
 
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
@@ -70,12 +64,12 @@ CHARSET='a-zA-Z0-9!@#$%^&*()_+-='
 MOT_DE_PASSE=$(cat /dev/urandom | tr -dc "$CHARSET" | head -c $LONGUEUR_PASS)
 
 cat << EOF > $ENV_FILE
-MYSQL_ROOT_PASSWORD=\"$MOT_DE_PASSE_SAISI\"
+MYSQL_ROOT_PASSWORD=$MOT_DE_PASSE_SAISI
 MYSQL_DATABASE=wordpress
 MYSQL_USER=kactus
-MYSQL_PASSWORD=\"$MOT_DE_PASSE\"
+MYSQL_PASSWORD=$MOT_DE_PASSE
 WORDPRESS_DB_USER=kactus
-WORDPRESS_DB_PASSWORD=\"$MOT_DE_PASSE\"
+WORDPRESS_DB_PASSWORD=$MOT_DE_PASSE
 EOF
 
 chmod 600 $ENV_FILE
