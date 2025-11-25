@@ -17,6 +17,7 @@ cd $PROJECT_NAME
 # 2. Créer le fichier docker-compose.yml
 # Cette image exécute un binaire qui affiche le message et s'arrête.
 cat << EOF > $COMPOSE_FILE
+version: '2'
 services:
    db:
      image: mariadb:latest
@@ -28,26 +29,19 @@ services:
        MYSQL_DATABASE: ${MYSQL_DATABASE}
        MYSQL_USER: ${MYSQL_USER}
        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-     networks:
-       - frontend
 
    wordpress:
      image: wordpress:latest
      ports:
-       - 80:32774
+       - 80
      restart: always
      environment:
        WORDPRESS_DB_HOST: db:3306
        WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
        WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
-     networks:
-       - frontend
 
 volumes:
     db_data:
-networks:
-  frontend:
-    external: true
 EOF
 
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
@@ -82,5 +76,3 @@ echo "▶️ Lancement de 'docker compose up'"
 # On n'utilise pas -d pour voir la sortie immédiatement
 docker compose up --force-recreate --build --no-start
 docker compose start
-
-echo "✨ Terminé ! Le projet Kactus Web a été configuré et les ressources sont nettoyées."
