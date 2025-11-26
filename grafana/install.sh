@@ -12,15 +12,15 @@ ENV_FILE=".env"
 echo "🚀 Préparation du projet Docker Compose..."
 
 # 1. Créer le répertoire du projet s'il n'existe pas
-mkdir -p ~/dockers/$PROJECT_NAME
-cd ~/dockers/$PROJECT_NAME
+mkdir -p $HOME/dockers/$PROJECT_NAME
+cd $HOME/dockers/$PROJECT_NAME
 
 # 2. Créer le fichier docker-compose.yml
 # Cette image exécute un binaire qui affiche le message et s'arrête.
 cat << EOF > $COMPOSE_FILE
 services:
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:latest
     restart: unless-stopped
     networks:
       - grafana
@@ -35,7 +35,7 @@ services:
       - loki
 
   loki:
-    image: grafana/loki
+    image: grafana/loki:latest
     restart: unless-stopped
     ports:
       - "3100:3100"
@@ -43,7 +43,7 @@ services:
       - grafana
 
   promtail:
-    image: grafana/promtail
+    image: grafana/promtail:latest
     restart: unless-stopped
     volumes:
       - /var/log:/var/log
