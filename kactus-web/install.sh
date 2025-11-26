@@ -74,5 +74,5 @@ chmod 600 $ENV_FILE
 
 echo "▶️ Lancement de 'docker compose up'"
 # On n'utilise pas -d pour voir la sortie immédiatement
-docker compose up --force-recreate --build --no-start
-docker compose start
+sudo docker compose up --force-recreate --build --no-start
+sudo docker compose start
