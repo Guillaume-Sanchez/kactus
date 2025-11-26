@@ -50,7 +50,8 @@ echo "---"
 
 # 3. Créer le fichier .env
 #Demander à l'utilisateur de saisir le mot de passe root de la base de données
-read -ps "Veuillez entrer le mot de passe root de la base de données : " MOT_DE_PASSE_SAISI
+echo 'Veuillez entrer le mot de passe root de la base de données 🔐 : '
+read -s MOT_DE_PASSE_SAISI
 
 #Génération d'un mot de passe aléatoire
 LONGUEUR_PASS=20
