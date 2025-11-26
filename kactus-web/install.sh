@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 2.0.0
+# version: 2.0.1
 
 # --- Configuration ---
 PROJECT_NAME="kactus-web"
@@ -12,7 +12,7 @@ ENV_FILE=".env"
 echo "🚀 Préparation du projet Docker Compose..."
 
 # 1. Créer le répertoire du projet s'il n'existe pas
-mkdir -p ~/dockers
+
 mkdir -p ~/dockers/$PROJECT_NAME
 cd ~/dockers/$PROJECT_NAME
 
