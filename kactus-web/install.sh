@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 2.0.2
+# version: 2.0.3
 
 # --- Configuration ---
 PROJECT_NAME="kactus-web"
@@ -50,7 +50,8 @@ echo "---"
 
 # 3. Créer le fichier .env
 #Demander à l'utilisateur de saisir le mot de passe root de la base de données
-read -ps "Veuillez entrer le mot de passe root de la base de données : " MOT_DE_PASSE_SAISI
+echo 'Veuillez entrer le mot de passe root de la base de données 🔐 : '
+read -s MOT_DE_PASSE_SAISI
 
 #Génération d'un mot de passe aléatoire
 LONGUEUR_PASS=20
