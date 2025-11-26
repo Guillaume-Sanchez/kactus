@@ -2,6 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
+# version: 2.0.0
 
 # --- Configuration ---
 PROJECT_NAME="grafana"
@@ -11,14 +12,12 @@ ENV_FILE=".env"
 echo "🚀 Préparation du projet Docker Compose..."
 
 # 1. Créer le répertoire du projet s'il n'existe pas
-mkdir -p $PROJECT_NAME
-cd $PROJECT_NAME
+mkdir -p ~/dockers/$PROJECT_NAME
+cd ~/dockers/$PROJECT_NAME
 
 # 2. Créer le fichier docker-compose.yml
 # Cette image exécute un binaire qui affiche le message et s'arrête.
 cat << EOF > $COMPOSE_FILE
-version: "3.6"
-
 services:
   grafana:
     image: grafana/grafana
@@ -50,9 +49,6 @@ services:
       - /var/log:/var/log
     networks:
       - grafana
-    labels:
-      # Empêche Traefik de configurer ce conteneur comme un Service HTTP/route
-      - "traefik.enable=false"
 
 volumes:
   grafana_data:
@@ -62,16 +58,18 @@ networks:
 EOF
 
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
+
 cat $COMPOSE_FILE
 echo "---"
 
 # 3. Créer le fichier .env
-#Demander à l'utilisateur de saisir le mot de passe root de la base de données
-read -p "Veuillez entrer le login administrateur : " USER_SAISI
-read -p "Veuillez entrer le mot de passe administrateur : " MOT_DE_PASSE_SAISI
+#Demander à l'utilisateur de saisir le mot de passe
+echo 'Veuillez entrer le mot de passe root de la base de données 🔐 : '
+read -s MOT_DE_PASSE_SAISI
+
 cat << EOF > $ENV_FILE
-GRAFANA_ADMIN=\"$USER_SAISI"\
-GRAFANA_PASSWORD=\"$MOT_DE_PASSE_SAISI\"
+GRAFANA_ADMIN=admin
+GRAFANA_PASSWORD=$MOT_DE_PASSE_SAISI
 EOF
 
 chmod 600 $ENV_FILE
@@ -82,7 +80,7 @@ chmod 600 $ENV_FILE
 
 echo "▶️ Lancement de 'docker compose up'"
 # On n'utilise pas -d pour voir la sortie immédiatement
-docker compose up --force-recreate --build --no-start
-docker compose start
+sudo docker compose up --force-recreate --build --no-start
+sudo docker compose start
 
 echo "✨ Terminé ! Grafana et Loki ont été configurés et les ressources sont nettoyées."
