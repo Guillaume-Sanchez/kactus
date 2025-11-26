@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 1.0.0
+# version: 1.0.2
 
 # === LISTE DES SCRIPTS DISTANTS ===
 declare -A scripts
