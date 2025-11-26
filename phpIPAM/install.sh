@@ -2,6 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
+# version: 2.0.0
 
 # --- Configuration ---
 PROJECT_NAME="phpipam"
@@ -11,8 +12,8 @@ ENV_FILE=".env"
 echo "🚀 Préparation du projet Docker Compose..."
 
 # 1. Créer le répertoire du projet s'il n'existe pas
-mkdir -p $PROJECT_NAME
-cd $PROJECT_NAME
+mkdir -p ~/dockers/$PROJECT_NAME
+cd ~/dockers/$PROJECT_NAME
 
 # 2. Créer le fichier docker-compose.yml
 # Cette image exécute un binaire qui affiche le message et s'arrête.
@@ -52,9 +53,6 @@ services:
      cap_add:
        - NET_ADMIN
        - NET_RAW
-     labels:
-       # Empêche Traefik de configurer ce conteneur comme un Service HTTP/route
-       - "traefik.enable=false"
 
    db:
      image: mariadb:latest
@@ -63,9 +61,6 @@ services:
      restart: unless-stopped
      volumes:
        - phpipam-db-data:/var/lib/mysql
-     labels:
-       # Empêche Traefik de configurer ce conteneur comme un Service HTTP/route
-       - "traefik.enable=false"
 
 volumes:
    phpipam-db-data:
@@ -79,7 +74,8 @@ echo "---"
 
 # 3. Créer le fichier .env
 #Demander à l'utilisateur de saisir le mot de passe root de la base de données
-read -p "Veuillez entrer le mot de passe root de la base de données : " MOT_DE_PASSE_SAISI
+echo 'Veuillez entrer le mot de passe root de la base de données 🔐 : '
+read -s MOT_DE_PASSE_SAISI
 
 cat << EOF > $ENV_FILE
 MYSQL_ROOT_PASSWORD=$MOT_DE_PASSE_SAISI
@@ -93,7 +89,7 @@ chmod 600 $ENV_FILE
 
 echo "▶️ Lancement de 'docker compose up'"
 # On n'utilise pas -d pour voir la sortie immédiatement
-docker compose up --force-recreate --build --no-start
-docker compose start
+sudo docker compose up --force-recreate --build --no-start
+sudo docker compose start
 
 echo "✨ Terminé ! PhpIPAM a bien été configurés et les ressources sont nettoyées."
