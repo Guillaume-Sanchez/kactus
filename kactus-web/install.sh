@@ -17,7 +17,6 @@ cd ~/dockers/$PROJECT_NAME
 
 # 2. Créer le fichier docker-compose.yml
 cat << EOF > $COMPOSE_FILE
-version: '2'
 services:
    db:
      image: mariadb:latest
