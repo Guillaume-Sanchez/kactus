@@ -11,10 +11,10 @@ declare -A scripts
 if [ -d "$HOME/kactus" ]; then
     echo "📂 Utilisation des scripts locaux dans $HOME/kactus"
     scripts=(
-        ["Installer Kactus Web"]="$HOME/kactus/kactus-web/update.sh"
-        ["Installer grafana et Loki"]="$HOME/kactus/grafana/update.sh"
-        ["Installer Prometheus"]="$HOME/kactus/prometheus/update.sh"
-        ["Installer PhpIPAM"]="$HOME/kactus/phpIPAM/update.sh"
+        ["Mettre à jour Kactus Web"]="$HOME/kactus/kactus-web/update.sh"
+        ["Mettre à jour grafana et Loki"]="$HOME/kactus/grafana/update.sh"
+        ["Mettre à jour Prometheus"]="$HOME/kactus/prometheus/update.sh"
+        ["Mettre à jour PhpIPAM"]="$HOME/kactus/phpIPAM/update.sh"
     )
     # --- Fonction d'exécution d'un script local ---
     run_remote() {
@@ -26,10 +26,10 @@ if [ -d "$HOME/kactus" ]; then
 else
     echo "🌐 Utilisation des scripts depuis le dépôt GitHub"
     scripts=(
-        ["Installer Kactus Web"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/kactus-web/update.sh"
-        ["Installer grafana et Loki"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/grafana/update.sh"
-        ["Installer Prometheus"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/prometheus/update.sh"
-        ["Installer PhpIPAM"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/phpIPAM/update.sh"
+        ["Mettre à jour Kactus Web"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/kactus-web/update.sh"
+        ["Mettre à jour grafana et Loki"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/grafana/update.sh"
+        ["Mettre à jour Prometheus"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/prometheus/update.sh"
+        ["Mettre à jour PhpIPAM"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/phpIPAM/update.sh"
     )
 
     # --- Fonction d'exécution d'un script distant ---
