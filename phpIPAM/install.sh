@@ -12,8 +12,8 @@ ENV_FILE=".env"
 echo "🚀 Préparation du projet Docker Compose..."
 
 # 1. Créer le répertoire du projet s'il n'existe pas
-mkdir -p ~/dockers/$PROJECT_NAME
-cd ~/dockers/$PROJECT_NAME
+mkdir -p $HOME/dockers/$PROJECT_NAME
+cd $HOME/dockers/$PROJECT_NAME
 
 # 2. Créer le fichier docker-compose.yml
 # Cette image exécute un binaire qui affiche le message et s'arrête.
