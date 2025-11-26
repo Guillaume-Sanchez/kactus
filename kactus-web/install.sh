@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 2.0.1
+# version: 2.0.2
 
 # --- Configuration ---
 PROJECT_NAME="kactus-web"
@@ -12,13 +12,10 @@ ENV_FILE=".env"
 echo "🚀 Préparation du projet Docker Compose..."
 
 # 1. Créer le répertoire du projet s'il n'existe pas
-
 mkdir -p ~/dockers/$PROJECT_NAME
 cd ~/dockers/$PROJECT_NAME
 
-# 2. Créer le fichier docker-compose.yml s'il n'existe pas
-if [ -f "$COMPOSE_FILE" ]; then
-# Cette image exécute un binaire qui affiche le message et s'arrête.
+# 2. Créer le fichier docker-compose.yml
 cat << EOF > $COMPOSE_FILE
 version: '2'
 services:
@@ -47,14 +44,13 @@ volumes:
     db_data:
 EOF
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
-fi
 
 cat $COMPOSE_FILE
 echo "---"
 
 # 3. Créer le fichier .env
 #Demander à l'utilisateur de saisir le mot de passe root de la base de données
-read -p "Veuillez entrer le mot de passe root de la base de données : " MOT_DE_PASSE_SAISI
+read -ps "Veuillez entrer le mot de passe root de la base de données : " MOT_DE_PASSE_SAISI
 
 #Génération d'un mot de passe aléatoire
 LONGUEUR_PASS=20
