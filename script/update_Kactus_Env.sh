@@ -15,7 +15,6 @@ if [ -d "$HOME/kactus" ]; then
         ["Installer grafana et Loki"]="$HOME/kactus/grafana/update.sh"
         ["Installer Prometheus"]="$HOME/kactus/prometheus/update.sh"
         ["Installer PhpIPAM"]="$HOME/kactus/phpIPAM/update.sh"
-        ["Installer Traefik"]="$HOME/kactus/traefik/update.sh"
     )
     # --- Fonction d'exécution d'un script local ---
     run_remote() {
@@ -31,7 +30,6 @@ else
         ["Installer grafana et Loki"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/grafana/update.sh"
         ["Installer Prometheus"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/prometheus/update.sh"
         ["Installer PhpIPAM"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/phpIPAM/update.sh"
-        ["Installer Traefik"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/traefik/update.sh"
     )
 
     # --- Fonction d'exécution d'un script distant ---
