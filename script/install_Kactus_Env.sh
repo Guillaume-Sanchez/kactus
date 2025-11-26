@@ -2,6 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
+# version: 2.0.1
 
 # === LISTE DES SCRIPTS DISTANTS ===
 declare -A scripts
@@ -32,7 +33,7 @@ run_remote() {
     echo "----------------------------------------------------"
     echo "▶️  Exécution du script : $1"
     echo "----------------------------------------------------"
-    sudo bash -c "$(curl -fsSL "$1")"
+    bash -c "$(curl -fsSL "$1")"||$1
 }
 
 # ============================
