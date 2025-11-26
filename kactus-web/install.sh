@@ -2,6 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
+# version: 2.0.0
 
 # --- Configuration ---
 PROJECT_NAME="kactus-web"
@@ -11,10 +12,12 @@ ENV_FILE=".env"
 echo "🚀 Préparation du projet Docker Compose..."
 
 # 1. Créer le répertoire du projet s'il n'existe pas
-mkdir -p $PROJECT_NAME
-cd $PROJECT_NAME
+mkdir -p ~/dockers
+mkdir -p ~/dockers/$PROJECT_NAME
+cd ~/dockers/$PROJECT_NAME
 
-# 2. Créer le fichier docker-compose.yml
+# 2. Créer le fichier docker-compose.yml s'il n'existe pas
+if [ -f "$COMPOSE_FILE" ]; then
 # Cette image exécute un binaire qui affiche le message et s'arrête.
 cat << EOF > $COMPOSE_FILE
 version: '2'
@@ -43,8 +46,9 @@ services:
 volumes:
     db_data:
 EOF
-
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
+fi
+
 cat $COMPOSE_FILE
 echo "---"
 
