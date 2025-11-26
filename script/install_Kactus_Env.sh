@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 2.0.1
+# version: 2.0.2
 
 # === LISTE DES SCRIPTS DISTANTS ===
 declare -A scripts
@@ -11,12 +11,19 @@ declare -A scripts
 if [ -d "$HOME/kactus" ]; then
     echo "📂 Utilisation des scripts locaux dans $HOME/kactus"
     scripts=(
-    ["Installer Kactus Web"]="$HOME/kactus/kactus-web/install.sh"
-    ["Installer grafana et Loki"]="$HOME/kactus/grafana/install.sh"
-    ["Installer Prometheus"]="$HOME/kactus/prometheus/install.sh"
-    ["Installer PhpIPAM"]="$HOME/kactus/phpIPAM/install.sh"
-    ["Installer Traefik"]="$HOME/kactus/traefik/install.sh"
+        ["Installer Kactus Web"]="$HOME/kactus/kactus-web/install.sh"
+        ["Installer grafana et Loki"]="$HOME/kactus/grafana/install.sh"
+        ["Installer Prometheus"]="$HOME/kactus/prometheus/install.sh"
+        ["Installer PhpIPAM"]="$HOME/kactus/phpIPAM/install.sh"
+        ["Installer Traefik"]="$HOME/kactus/traefik/install.sh"
     )
+    # --- Fonction d'exécution d'un script distant ---
+    run_remote() {
+        echo "----------------------------------------------------"
+        echo "▶️  Exécution du script : $1"
+        echo "----------------------------------------------------"
+        $1
+    }
 else
     echo "🌐 Utilisation des scripts depuis le dépôt GitHub"
     scripts=(
@@ -26,15 +33,17 @@ else
         ["Installer PhpIPAM"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/phpIPAM/install.sh"
         ["Installer Traefik"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/traefik/install.sh"
     )
+
+    # --- Fonction d'exécution d'un script distant ---
+    run_remote() {
+        echo "----------------------------------------------------"
+        echo "▶️  Exécution du script : $1"
+        echo "----------------------------------------------------"
+        bash -c "$(curl -fsSL "$1")"
+    }
 fi
 
-# --- Fonction d'exécution d'un script distant ---
-run_remote() {
-    echo "----------------------------------------------------"
-    echo "▶️  Exécution du script : $1"
-    echo "----------------------------------------------------"
-    bash -c "$(curl -fsSL "$1")"||$1
-}
+
 
 # ============================
 #        MENU PRINCIPAL
