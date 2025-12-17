@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 2.0.3
+# version: 2.0.4
 
 # --- Configuration ---
 PROJECT_NAME="kactus-web"
@@ -32,7 +32,7 @@ services:
    wordpress:
      image: wordpress:latest
      ports:
-       - 80
+       - 80:80
      restart: always
      environment:
        WORDPRESS_DB_HOST: db:3306
