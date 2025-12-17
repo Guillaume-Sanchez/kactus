@@ -90,6 +90,16 @@ while true; do
         continue
     fi
 
+    # Mise en place d'une crontab pour mettre à jour Kactus chaque jour à 2h du matin
+    if [[ "$choice" =~ ^[mM]$ ]]; then
+        echo "🚀 Mise en place de la mise à jour automatique quotidienne de Kactus"
+        crontab -l > kactus_crontab
+        echo "0 2 * * * cd ~/kactus && git pull origin main" >> kactus_crontab
+        crontab kactus_crontab
+        rm kactus_crontab
+        echo "✅ Crontab mise à jour."
+    fi
+
     # Quitter
     if [[ "$choice" =~ ^[qQ]$ ]]; then
         echo "👋 Fin du script."
