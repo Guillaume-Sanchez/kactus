@@ -44,7 +44,7 @@ services:
       - grafana
 
   prometheus:
-    image: prom/prometheus
+    image: prom/prometheus:latest
     volumes:
       - "./prometheus.yml:/etc/prometheus/prometheus.yml"
     networks:
