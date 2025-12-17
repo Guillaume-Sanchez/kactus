@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 2.0.2
+# version: 2.0.3
 
 # === LISTE DES SCRIPTS DISTANTS ===
 declare -A scripts
@@ -12,10 +12,8 @@ if [ -d "$HOME/kactus" ]; then
     echo "📂 Utilisation des scripts locaux dans $HOME/kactus"
     scripts=(
         ["Installer Kactus Web"]="$HOME/kactus/kactus-web/install.sh"
-        ["Installer grafana et Loki"]="$HOME/kactus/grafana/install.sh"
-        ["Installer Prometheus"]="$HOME/kactus/prometheus/install.sh"
+        ["Installer grafana Loki et Prometheus"]="$HOME/kactus/grafana/install.sh"
         ["Installer PhpIPAM"]="$HOME/kactus/phpIPAM/install.sh"
-        ["Installer Traefik"]="$HOME/kactus/traefik/install.sh"
     )
     # --- Fonction d'exécution d'un script distant ---
     run_remote() {
@@ -28,10 +26,8 @@ else
     echo "🌐 Utilisation des scripts depuis le dépôt GitHub"
     scripts=(
         ["Installer Kactus Web"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/kactus-web/install.sh"
-        ["Installer grafana et Loki"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/grafana/install.sh"
-        ["Installer Prometheus"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/prometheus/install.sh"
+        ["Installer grafana Loki et Prometheus"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/grafana/install.sh"
         ["Installer PhpIPAM"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/phpIPAM/install.sh"
-        ["Installer Traefik"]="https://raw.githubusercontent.com/Guillaume-Sanchez/kactus/refs/heads/main/traefik/install.sh"
     )
 
     # --- Fonction d'exécution d'un script distant ---

@@ -19,4 +19,4 @@ echo "▶️ Lancement de 'docker compose up'"
 # On n'utilise pas -d pour voir la sortie immédiatement
 sudo docker compose up -d --force-recreate --pull always
 
-echo "✨ Terminé ! Grafana et Loki ont été mis à jour."
+echo "✨ Terminé ! Grafana, Loki et Prometheus ont été mis à jour."
