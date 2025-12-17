@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 1.0.2
+# version: 1.0.3
 
 set -e
 
@@ -56,7 +56,7 @@ TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 SAFE_TARGET=$(echo "$TARGET" | sed 's#[/ ]#_#g')
 
 # Nom du fichier
-REPORT_FILE="$REPORT_DIR/trivy-report-$COMMAND-$SAFE_TARGET-$TIMESTAMP.txt"
+REPORT_FILE="$REPORT_DIR/trivy-report-$COMMAND-$SAFE_TARGET-$TIMESTAMP.log"
 
 
 run_scan() {

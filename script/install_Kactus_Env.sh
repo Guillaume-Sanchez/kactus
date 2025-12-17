@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 2.0.3
+# version: 2.0.4
 
 # === LISTE DES SCRIPTS DISTANTS ===
 declare -A scripts
@@ -90,14 +90,15 @@ while true; do
         continue
     fi
 
-    # Mise en place d'une crontab pour mettre à jour Kactus chaque jour à 2h du matin
-    if [[ "$choice" =~ ^[mM]$ ]]; then
-        echo "🚀 Mise en place de la mise à jour automatique quotidienne de Kactus"
+    # Mise en place d'une crontab pour lancer les scans Trivy automatiquement
+    if [[ "$choice" =~ ^[tT]$ ]]; then
+        echo "🚀 Mise en place de la crontab pour les scans Trivy"
         crontab -l > kactus_crontab
-        echo "0 2 * * * cd ~/kactus && git pull origin main" >> kactus_crontab
+        echo "0 2 * * * cd ~/kactus/trivy && ./trivy-crontab.sh" >> kactus_crontab
         crontab kactus_crontab
         rm kactus_crontab
         echo "✅ Crontab mise à jour."
+        continue
     fi
 
     # Quitter
