@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 3.0.0
+# version: 3.0.1
 
 # --- Configuration ---
 PROJECT_NAME="grafana"
@@ -77,12 +77,15 @@ echo "---"
 echo 'Veuillez entrer le mot de passe root de la base de données 🔐 : '
 read -s MOT_DE_PASSE_SAISI
 
+sudo rm -f $ENV_FILE
+
 cat << EOF > $ENV_FILE
 GRAFANA_ADMIN=admin
 GRAFANA_PASSWORD=$MOT_DE_PASSE_SAISI
 EOF
 
 chmod 600 $ENV_FILE
+chown root:root $ENV_FILE
 
 # 4. Créer le fichier prometheus.yml
 cat << EOF > $CONF_FILE

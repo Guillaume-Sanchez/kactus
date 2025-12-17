@@ -1,0 +1,100 @@
+/*
+Theme Name: Kactus
+Author: Guillaume Sanchez
+Version: 1.0
+*/
+:root {
+    --primary-color: #78a34d; /* Vert Cactus */
+    --secondary-color: #2d3436;
+    --bg-dark: #1a1a1a;
+    --text-light: #f5f5f5;
+    --text-gray: #b2bec3;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.site-header {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo { display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 1.5rem; }
+.logo img { height: 40px; width: auto; }
+
+.main-nav ul { display: flex; list-style: none; gap: 30px; align-items: center; }
+.main-nav a { text-decoration: none; color: var(--text-light); transition: 0.3s; }
+.main-nav a:hover { color: var(--primary-color); }
+
+.btn-contact {
+    background: var(--primary-color);
+    padding: 8px 20px;
+    border-radius: 5px;
+    color: white !important;
+}
+
+/* Hero Section */
+.hero { padding: 100px 0; }
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+.hero h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; }
+.hero h1 span { color: var(--primary-color); }
+.hero p { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 30px; }
+
+.btn-primary {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+.btn-primary:hover { transform: translateY(-3px); }
+
+.hero-image img { width: 100%; border-radius: 15px; }
+
+/* Services */
+.services { padding: 80px 0; background: #222; }
+.section-title { text-align: center; margin-bottom: 50px; font-size: 2.5rem; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+.service-card {
+    background: var(--bg-dark);
+    padding: 40px;
+    border-radius: 10px;
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+.service-card:hover { border-color: var(--primary-color); transform: scale(1.02); }
+.service-card .icon { font-size: 3rem; margin-bottom: 20px; }
+.service-card h3 { margin-bottom: 15px; }
+.service-card p { color: var(--text-gray); }
+
+/* Footer */
+.site-footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); color: var(--text-gray); }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero h1 { font-size: 2.5rem; }
+}

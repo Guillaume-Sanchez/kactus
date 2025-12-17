@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 2.0.4
+# version: 2.0.5
 
 # --- Configuration ---
 PROJECT_NAME="kactus-web"
@@ -11,9 +11,12 @@ ENV_FILE=".env"
 
 echo "🚀 Préparation du projet Docker Compose..."
 
-# 1. Créer le répertoire du projet s'il n'existe pas
+# 1. Créer le répertoire du projet s'il n'existe pas et mise en place des fichiers nécessaires
 mkdir -p ~/dockers/$PROJECT_NAME
 cd ~/dockers/$PROJECT_NAME
+
+cp -r wp-content ~/dockers/$PROJECT_NAME/wp-content
+cp wp-config.php ~/dockers/$PROJECT_NAME/wp-config.php
 
 # 2. Créer le fichier docker-compose.yml
 cat << EOF > $COMPOSE_FILE
@@ -40,6 +43,7 @@ services:
        WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
      volumes:
        - ./wp-content/themes/Kactus:/var/www/html/wp-content/themes/Kactus
+       - ./wp-config.php:/var/www/html/wp-config.php
 
 volumes:
     db_data:
@@ -55,9 +59,11 @@ echo 'Veuillez entrer le mot de passe root de la base de données 🔐 : '
 read -s MOT_DE_PASSE_SAISI
 
 #Génération d'un mot de passe aléatoire
-LONGUEUR_PASS=20
+LONGUEUR_PASS=30
 CHARSET='a-zA-Z0-9!@#$%^&*()_+-='
 MOT_DE_PASSE=$(cat /dev/urandom | tr -dc "$CHARSET" | head -c $LONGUEUR_PASS)
+
+sudo rm -f $ENV_FILE
 
 cat << EOF > $ENV_FILE
 MYSQL_ROOT_PASSWORD=$MOT_DE_PASSE_SAISI
@@ -69,6 +75,7 @@ WORDPRESS_DB_PASSWORD=$MOT_DE_PASSE
 EOF
 
 chmod 600 $ENV_FILE
+chown root:root $ENV_FILE
 
 # 4. Exécuter Docker Compose
 # -d pour détacher (pas nécessaire ici pour hello-world, mais bonne pratique)
