@@ -3,8 +3,6 @@
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
 
-#!/usr/bin/env bash
-
 set -e
 
 TRIVY_IMAGE="aquasec/trivy:latest"
