@@ -57,6 +57,7 @@ while true; do
 
     echo "A. Installer TOUS les scripts"
     echo "C. Cloner le dépôt GitHub de Kactus dans ~/kactus"
+    echo "T. Mettre en place une crontab pour les scans Trivy automatiques"
     echo "Q. Quitter"
     echo ""
     read -p "➡️  Votre choix : " choice
