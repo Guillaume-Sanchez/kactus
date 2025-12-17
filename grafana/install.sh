@@ -50,7 +50,7 @@ services:
     networks:
       - grafana
     ports:
-      - 3200:3200
+      - 9090:9090
 
   promtail:
     image: grafana/promtail:latest
@@ -92,7 +92,7 @@ scrape_configs:
  - job_name: prometheus
    static_configs:
      - targets:
-       - prometheus:3200
+       - prometheus:9090
 EOF
 
 # 5. Exécuter Docker Compose
