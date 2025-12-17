@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 1.0.1
+# version: 1.0.2
 
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 TRIVY_IMAGE="aquasec/trivy:latest"
@@ -11,7 +11,7 @@ cd ~/kactus/trivy
 
 # Répertoire du script (résoudre le chemin absolu pour permettre l'exécution depuis n'importe où)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd || pwd)"
-REPORT_DIR="$SCRIPT_DIR/trivy-reports"
+REPORT_DIR="$HOME/trivy-reports"
 
 echo "--- Début du scan de sécurité du $TIMESTAMP ---"
 IMAGES=$(docker ps --format "{{.Image}}")

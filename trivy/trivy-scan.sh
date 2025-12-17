@@ -2,12 +2,13 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
+# version: 1.0.2
 
 set -e
 
 TRIVY_IMAGE="aquasec/trivy:latest"
 CACHE_DIR="$HOME/.cache/trivy"
-REPORT_DIR="./trivy-reports"
+REPORT_DIR="$HOME/trivy-reports"
 
 usage() {
   echo "Trivy Remote Runner"
