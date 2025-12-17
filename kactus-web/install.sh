@@ -38,6 +38,8 @@ services:
        WORDPRESS_DB_HOST: db:3306
        WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
        WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+     volumes:
+       - ./wp-content/themes/Kactus:/var/www/html/wp-content/themes/Kactus
 
 volumes:
     db_data:
