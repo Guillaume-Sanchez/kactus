@@ -92,7 +92,7 @@ scrape_configs:
  - job_name: prometheus
    static_configs:
      - targets:
-       - prometheus:9090
+       - prometheus:3200
 EOF
 
 # 5. Exécuter Docker Compose
