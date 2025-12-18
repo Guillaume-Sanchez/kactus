@@ -9,6 +9,7 @@ set -e
 TRIVY_IMAGE="aquasec/trivy:latest"
 CACHE_DIR="$HOME/.cache/trivy"
 REPORT_DIR="$HOME/trivy-reports"
+HOME="/home/admkactus"
 
 usage() {
   echo "Trivy Remote Runner"

@@ -6,6 +6,7 @@
 
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 TRIVY_IMAGE="aquasec/trivy:latest"
+HOME="/home/admkactus"
 
 cd ~/kactus/trivy
 
