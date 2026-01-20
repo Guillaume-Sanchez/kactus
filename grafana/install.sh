@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 3.0.1
+# version: 3.0.2
 
 # --- Configuration ---
 PROJECT_NAME="grafana"
