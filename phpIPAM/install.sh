@@ -72,6 +72,9 @@ volumes:
    phpipam-db-data:
    phpipam-logo:
    phpipam-ca:
+
+networks:
+  kactus-network:
 EOF
 
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"

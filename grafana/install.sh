@@ -62,6 +62,9 @@ services:
 
 volumes:
   grafana_data:
+
+networks:
+  kactus-network:
 EOF
 
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
