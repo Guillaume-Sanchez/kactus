@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 2.0.5
+# version: 2.0.6
 
 # --- Configuration ---
 PROJECT_NAME="kactus-web"
@@ -15,8 +15,12 @@ echo "🚀 Préparation du projet Docker Compose..."
 mkdir -p ~/dockers/$PROJECT_NAME
 cd ~/dockers/$PROJECT_NAME
 
-cp -r wp-content ~/dockers/$PROJECT_NAME/wp-content
-cp wp-config.php ~/dockers/$PROJECT_NAME/wp-config.php
+cp -r ~/kactus/kactus-web/wp-content wp-content
+cp ~/kactus/kactus-web/wp-config.php wp-config.php
+chmod 755 wp-config.php
+chmod -Rf 755 wp-content
+chown -Rf $USER:$USER wp-content
+chown $USER:$USER wp-config.php
 
 # 2. Créer le fichier docker-compose.yml
 cat << EOF > $COMPOSE_FILE
