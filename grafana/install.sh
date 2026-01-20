@@ -24,7 +24,7 @@ services:
     image: grafana/grafana:latest
     restart: unless-stopped
     networks:
-      - grafana
+      - kactus-network
     environment:
       - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
@@ -41,51 +41,16 @@ services:
     ports:
       - "3100:3100"
     networks:
-      - grafana
+      - kactus-network
 
   prometheus:
     image: prom/prometheus:latest
     volumes:
       - "./prometheus.yml:/etc/prometheus/prometheus.yml"
     networks:
-      - grafana
+      - kactus-network
     ports:
       - 9090:9090
-
-  node-exporter:
-    image: prom/node-exporter:latest
-    container_name: node-exporter
-    restart: unless-stopped
-    volumes:
-      - /proc:/host/proc:ro  # Accès aux processus hôte (Lecture seule)
-      - /sys:/host/sys:ro    # Accès au système hôte (Lecture seule)
-      - /:/rootfs:ro         # Accès au système de fichiers (Lecture seule)
-    command:
-      - '--path.procfs=/host/proc'
-      - '--path.sysfs=/host/sys'
-      - '--path.rootfs=/rootfs'
-      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
-    ports:
-      - "9100:9100"
-    networks:
-      - monitoring-network
-  
-  cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.47.0
-    container_name: cadvisor
-    restart: unless-stopped
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:ro
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
-      - /dev/disk/:/dev/disk:ro
-    ports:
-      - "9200:9200"
-    networks:
-      - monitoring-network
-    devices:
-      - /dev/kmsg
 
   promtail:
     image: grafana/promtail:latest
@@ -93,13 +58,10 @@ services:
     volumes:
       - /var/log:/var/log
     networks:
-      - grafana
+      - kactus-network
 
 volumes:
   grafana_data:
-
-networks:
-  grafana:
 EOF
 
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
@@ -131,12 +93,6 @@ scrape_configs:
    static_configs:
      - targets:
        - prometheus:9090
- - job_name: 'node-exporter'
-   static_configs:
-     - targets: ['node-exporter:9100']
- - job_name: 'cadvisor'
-   static_configs:
-     - targets: ['cadvisor:9200']
 EOF
 
 # 5. Exécuter Docker Compose

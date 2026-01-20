@@ -21,6 +21,8 @@ cat << EOF > $COMPOSE_FILE
 services:
    web:
      image: phpipam/phpipam-www:latest
+     network:
+       - kactus-network
      ports:
        - "8080:80"
      environment:
@@ -40,6 +42,8 @@ services:
 
    cron:
      image: phpipam/phpipam-cron:latest
+     network:
+       - kactus-network
      environment:
        - TZ=Europe/London
        - IPAM_DATABASE_HOST=db
@@ -56,6 +60,8 @@ services:
 
    db:
      image: mariadb:latest
+     network:
+       - kactus-network
      environment:
        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
      restart: unless-stopped

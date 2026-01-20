@@ -25,6 +25,8 @@ services:
      image: mariadb:latest
      volumes:
        - db_data:/var/lib/mysql
+     network:
+       - kactus-network
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -36,6 +38,8 @@ services:
      image: wordpress:latest
      ports:
        - 80:80
+     network:
+       - kactus-network
      restart: always
      environment:
        WORDPRESS_DB_HOST: db:3306
