@@ -25,7 +25,7 @@ services:
      image: mariadb:latest
      volumes:
        - db_data:/var/lib/mysql
-     network:
+     networks:
        - kactus-network
      restart: always
      environment:
@@ -36,10 +36,10 @@ services:
 
    wordpress:
      image: wordpress:latest
+     networks:
+       - kactus-network
      ports:
        - 80:80
-     network:
-       - kactus-network
      restart: always
      environment:
        WORDPRESS_DB_HOST: db:3306
@@ -54,7 +54,7 @@ volumes:
 
 networks:
   kactus-network:
-  external: true
+    external: true
 EOF
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
 

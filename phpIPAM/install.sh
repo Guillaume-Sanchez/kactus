@@ -60,7 +60,7 @@ services:
 
    db:
      image: mariadb:latest
-     network:
+     networks:
        - kactus-network
      environment:
        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -75,7 +75,7 @@ volumes:
 
 networks:
   kactus-network:
-  external: true
+    external: true
 EOF
 
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"

@@ -37,35 +37,35 @@ services:
 
   loki:
     image: grafana/loki:latest
+    networks:
+      - kactus-network
     restart: unless-stopped
     ports:
       - "3100:3100"
-    networks:
-      - kactus-network
 
   prometheus:
     image: prom/prometheus:latest
-    volumes:
-      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
     networks:
       - kactus-network
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
     ports:
       - 9090:9090
 
   promtail:
     image: grafana/promtail:latest
+    networks:
+      - kactus-network
     restart: unless-stopped
     volumes:
       - /var/log:/var/log
-    networks:
-      - kactus-network
 
 volumes:
   grafana_data:
 
 networks:
   kactus-network:
-  external: true
+    external: true
 EOF
 
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
