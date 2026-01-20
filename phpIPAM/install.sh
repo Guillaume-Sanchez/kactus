@@ -21,7 +21,7 @@ cat << EOF > $COMPOSE_FILE
 services:
    web:
      image: phpipam/phpipam-www:latest
-     network:
+     networks:
        - kactus-network
      ports:
        - "8080:80"
@@ -42,7 +42,7 @@ services:
 
    cron:
      image: phpipam/phpipam-cron:latest
-     network:
+     networks:
        - kactus-network
      environment:
        - TZ=Europe/London
