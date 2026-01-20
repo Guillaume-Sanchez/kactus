@@ -27,7 +27,7 @@ services:
        - "8080:80"
      environment:
        - TZ=Europe/London
-       - IPAM_DATABASE_HOST=db
+       - IPAM_DATABASE_HOST=db-ipam
        - IPAM_DATABASE_PASS=aucuneidee
        - IPAM_DATABASE_WEBHOST=%
      restart: unless-stopped
@@ -35,7 +35,7 @@ services:
        - phpipam-logo:/phpipam/css/images/logo
        - phpipam-ca:/usr/local/share/ca-certificates:ro
      depends_on:
-       - db
+       - db-ipam
      cap_add:
        - NET_ADMIN
        - NET_RAW
@@ -46,14 +46,14 @@ services:
        - kactus-network
      environment:
        - TZ=Europe/London
-       - IPAM_DATABASE_HOST=db
+       - IPAM_DATABASE_HOST=db-ipam
        - IPAM_DATABASE_PASS=aucuneidee
        - SCAN_INTERVAL=1h
      restart: unless-stopped
      volumes:
        - phpipam-ca:/usr/local/share/ca-certificates:ro
      depends_on:
-       - db
+       - db-ipam
      cap_add:
        - NET_ADMIN
        - NET_RAW
