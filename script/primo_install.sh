@@ -24,14 +24,18 @@ crontab kactus_crontab
 rm kactus_crontab
 echo "✅ Crontab mise à jour."
 echo "============================"
-echo "Installation de Grafana, Loki, Prometheus et Promtail"
+echo "🚀 Création du réseau Docker kactus-network"
+echo "============================"
+docker network create kactus-network
+echo "============================"
+echo "🚀 Installation de Grafana, Loki, Prometheus et Promtail"
 echo "============================"
 grafana/install.sh
 echo "============================"
-echo "Installation de PhpIPAM"
+echo "🚀 Installation de PhpIPAM"
 echo "============================"
 phpIPAM/install.sh
 echo "============================"
-echo "Installation de Kactus Web"
+echo "🚀 Installation de Kactus Web"
 echo "============================"
 kactus-web/install.sh

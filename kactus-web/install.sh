@@ -51,9 +51,10 @@ services:
 
 volumes:
     db_data:
-    
+
 networks:
   kactus-network:
+  external: true
 EOF
 echo "✅ Fichier $COMPOSE_FILE créé dans $(pwd) :"
 
