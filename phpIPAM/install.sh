@@ -58,7 +58,7 @@ services:
        - NET_ADMIN
        - NET_RAW
 
-   db:
+   db-ipam:
      image: mariadb:latest
      networks:
        - kactus-network

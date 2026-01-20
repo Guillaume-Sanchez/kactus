@@ -25,7 +25,7 @@ chown $USER:$USER wp-config.php
 # 2. Créer le fichier docker-compose.yml
 cat << EOF > $COMPOSE_FILE
 services:
-   db:
+   db-wp:
      image: mariadb:latest
      volumes:
        - db_data:/var/lib/mysql
