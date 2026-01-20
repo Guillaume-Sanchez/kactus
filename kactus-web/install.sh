@@ -87,7 +87,6 @@ WORDPRESS_DB_PASSWORD=$MOT_DE_PASSE
 EOF
 
 chmod 600 $ENV_FILE
-chown root:root $ENV_FILE
 
 # 4. Exécuter Docker Compose
 # -d pour détacher (pas nécessaire ici pour hello-world, mais bonne pratique)

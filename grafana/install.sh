@@ -86,7 +86,6 @@ GRAFANA_PASSWORD=$MOT_DE_PASSE_SAISI
 EOF
 
 chmod 600 $ENV_FILE
-chown root:root $ENV_FILE
 
 # 4. Créer le fichier prometheus.yml
 cat << EOF > $CONF_FILE
