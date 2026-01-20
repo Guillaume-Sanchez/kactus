@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 1.0.0
+# version: 1.1.1
 
 echo "============================"
 echo "🚀 Clonage du dépôt GitHub de Kactus dans ~/kactus"
