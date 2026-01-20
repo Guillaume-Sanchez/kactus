@@ -102,9 +102,9 @@ EOF
 # -d pour détacher (pas nécessaire ici pour hello-world, mais bonne pratique)
 # --rm pour nettoyer le conteneur après l'arrêt (utile pour ce cas simple)
 
-echo "▶️ Lancement de 'docker compose up'"
+echo "▶️ Lancement de 'docker compose up'" > /dev/tty
 # On n'utilise pas -d pour voir la sortie immédiatement
-sudo docker compose up --force-recreate --build --no-start
-sudo docker compose start
+sudo docker compose up --force-recreate --build --no-start > /dev/tty
+sudo docker compose start > /dev/tty
 
-echo "✨ Terminé ! Grafana, Loki et Prometheus ont été configurés et les ressources sont nettoyées."
+echo "✨ Terminé ! Grafana, Loki et Prometheus ont été installés et configurés." > /dev/tty
