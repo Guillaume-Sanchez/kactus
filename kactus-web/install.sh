@@ -67,7 +67,7 @@ echo "---"
 
 # 3. Créer le fichier .env
 #Demander à l'utilisateur de saisir le mot de passe root de la base de données
-echo 'Veuillez entrer le mot de passe root de la base de données 🔐 : '
+echo 'Veuillez entrer le mot de passe root de la base de données 🔐 : ' > /dev/tty
 read -s MOT_DE_PASSE_SAISI
 
 #Génération d'un mot de passe aléatoire
