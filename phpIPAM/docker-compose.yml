@@ -3,8 +3,11 @@ services:
      image: phpipam/phpipam-www:latest
      networks:
        - kactus-network
-     ports:
-       - "8080:80"
+     labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.phpipam.rule=Host(`phpipam.kactus.guillaume-sanchez.fr`)"
+      - "traefik.http.routers.phpipam.entrypoints=web"
+      - "traefik.http.services.phpipam.loadbalancer.server.port=80"
      environment:
        - TZ=Europe/London
        - IPAM_DATABASE_HOST=db-ipam
