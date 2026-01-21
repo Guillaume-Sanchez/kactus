@@ -1,0 +1,47 @@
+services:
+  grafana:
+    image: grafana/grafana:latest
+    restart: unless-stopped
+    networks:
+      - kactus-network
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - loki
+
+  loki:
+    image: grafana/loki:latest
+    networks:
+      - kactus-network
+    restart: unless-stopped
+    ports:
+      - "3100:3100"
+
+  prometheus:
+    image: prom/prometheus:latest
+    networks:
+      - kactus-network
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
+    ports:
+      - 9090:9090
+
+  promtail:
+    image: grafana/promtail:latest
+    networks:
+      - kactus-network
+    restart: unless-stopped
+    volumes:
+      - /var/log:/var/log
+
+volumes:
+  grafana_data:
+
+networks:
+  kactus-network:
+    external: true
