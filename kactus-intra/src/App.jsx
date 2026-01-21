@@ -46,9 +46,6 @@ const KactusDashboard = () => {
 
   return (
     <>
-      {/* C'EST ICI QUE LA MAGIE OPÈRE 
-        On force le #root à prendre 100% de la largeur et on écrase les styles par défaut de Vite
-      */}
       <style>{`
         :root {
           font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -56,7 +53,6 @@ const KactusDashboard = () => {
           font-weight: 400;
         }
         
-        /* RESET TOTAL OBLIGATOIRE */
         html, body {
           margin: 0 !important;
           padding: 0 !important;
@@ -64,16 +60,6 @@ const KactusDashboard = () => {
           height: 100% !important;
           background-color: ${colors.background};
           max-width: none !important;
-        }
-
-        /* C'est LUI le coupable habituel : le conteneur React */
-        #root {
-          width: 100% !important;
-          max-width: none !important; /* Vite met souvent 1280px ici */
-          margin: 0 !important;
-          padding: 0 !important;
-          text-align: left !important; /* Vite met souvent center */
-          display: block !important; /* Parfois il est en flex */
         }
 
         /* Le reste du design */
@@ -85,7 +71,7 @@ const KactusDashboard = () => {
           justify-content: space-between;
           align-items: center;
           width: 100%;
-          box-sizing: border-box; /* Indispensable pour que le padding ne dépasse pas */
+          box-sizing: border-box;
         }
 
         .kactus-container {
@@ -93,13 +79,13 @@ const KactusDashboard = () => {
           min-height: 100vh;
           display: flex;
           flex-direction: column;
-          align-items: center; /* Centre le contenu principal */
+          align-items: center;
           color: ${colors.text};
         }
 
         .main-content {
           width: 100%;
-          max-width: 1200px; /* Largeur max du contenu */
+          max-width: 1200px;
           padding: 3rem 2rem;
           box-sizing: border-box;
         }
