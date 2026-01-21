@@ -27,7 +27,7 @@ services:
     networks:
       - kactus-network
     volumes:
-      - "./prometheus-config.yml:/etc/prometheus/prometheus.yml"
+      - "/opt/kactus/grafana/prometheus-config.yml:/etc/prometheus/prometheus.yml"
     ports:
       - 9090:9090
 
@@ -38,7 +38,7 @@ services:
     restart: unless-stopped
     volumes:
       - /var/log:/var/log
-      - ./promtail-config.yml:/etc/promtail/config.yml
+      - /opt/kactus/grafana/promtail-config.yml:/etc/promtail/config.yml
 
 volumes:
   grafana_data:
