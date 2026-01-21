@@ -1,6 +1,6 @@
 services:
   traefik:
-    image: traefik:lastest
+    image: traefik:v3.0
     container_name: kactus-traefik
     restart: unless-stopped
     command:
