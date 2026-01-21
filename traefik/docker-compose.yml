@@ -18,7 +18,7 @@ services:
       # et on le redirige vers le 80 de Traefik.
       - "82:80"
       # Le port pour accéder au Dashboard d'administration de Traefik
-      - "8080:8080"
+      - "8282:8080"
     volumes:
       # Indispensable : Donne accès à Traefik pour "voir" les autres conteneurs
       - /var/run/docker.sock:/var/run/docker.sock:ro
