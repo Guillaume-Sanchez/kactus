@@ -38,7 +38,7 @@ services:
     restart: unless-stopped
     volumes:
       - /var/log:/var/log
-      - promtail-config.yml:/etc/promtail/config.yml
+      - ./promtail-config.yml:/etc/promtail/config.yml
 
 volumes:
   grafana_data:
