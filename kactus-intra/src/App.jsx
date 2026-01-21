@@ -34,6 +34,13 @@ const KactusDashboard = () => {
       link: "http://192.168.1.242:8080",
       status: "Actif",
       statusColor: colors.primary
+    },
+    {
+      title: "Portail de Gestion d'infrastructure",
+      desc: "Interface d'administration des services Docker et de l'infrastructure serveur.",
+      link: "http://192.168.1.242:9000",
+      status: "Actif",
+      statusColor: colors.primary
     }
   ];
 
