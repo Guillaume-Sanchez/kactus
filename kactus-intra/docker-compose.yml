@@ -1,0 +1,14 @@
+services:
+  kactus-intra:
+    build: .
+    container_name: kactus-intra
+    image: kactus-intra:latest    
+    restart: unless-stopped
+    networks:
+      - kactus-network
+    ports:
+      - "8090:80"
+
+networks:
+  kactus-network:
+    external: true
