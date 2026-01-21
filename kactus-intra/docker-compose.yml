@@ -6,8 +6,11 @@ services:
     restart: unless-stopped
     networks:
       - kactus-network
-    ports:
-      - "8090:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.intranet.rule=Host(`intranet.portainer.kactus.guillaume-sanchez.fr`)"
+      - "traefik.http.routers.intranet.entrypoints=web"
+      - "traefik.http.services.intranet.loadbalancer.server.port=80"
 
 networks:
   kactus-network:
