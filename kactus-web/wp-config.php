@@ -26,12 +26,15 @@
 // a helper function to lookup "env_FILE", "env", then fallback
 
 /* Forcer le iHTTPS derriere un reverse proxy */
-if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
-    $_SERVER['HTTPS'] = 'on';
-}
+$_SERVER['HTTPS'] = 'on';
+$_SERVER['SERVER_PORT'] = 443;
 
-define('WP_HOME', 'https://kactus.guillaume-sanchez.fr/');
-define('WP_SITEURL', 'https://kactus.guillaume-sanchez.fr/');
+// On verrouille les URLs du site (ça écrase la base de données)
+define('WP_HOME', 'https://kactus.guillaume-sanchez.fr');
+define('WP_SITEURL', 'https://kactus.guillaume-sanchez.fr');
+
+// Force l'admin aussi
+define('FORCE_SSL_ADMIN', true);
 
 if (!function_exists('getenv_docker')) {
 	// https://github.com/docker-library/wordpress/issues/588 (WP-CLI will load this file 2x)
