@@ -16,11 +16,8 @@ services:
      image: wordpress:latest
      networks:
        - kactus-network
-     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.kactus.rule=Host(`kactus.guillaume-sanchez.fr`)"
-      - "traefik.http.routers.kactus.entrypoints=web"
-      - "traefik.http.services.kactus.loadbalancer.server.port=80"
+     ports:
+       - "80:80"
      restart: always
      environment:
        WORDPRESS_DB_HOST: db-wp:3306

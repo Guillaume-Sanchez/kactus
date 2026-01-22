@@ -13,11 +13,8 @@ services:
 
     networks:
       - kactus-network
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.portainer.rule=Host(`portainer.kactus.guillaume-sanchez.fr`)"
-      - "traefik.http.routers.portainer.entrypoints=web"
-      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+    ports:
+      - "9000:9000"
 
 volumes:
   portainer_data:
