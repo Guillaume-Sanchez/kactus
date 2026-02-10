@@ -34,7 +34,7 @@ services:
   promtail:
     image: grafana/promtail:latest
     networks:
-      - kactus-network
+      - kactus-public
     restart: unless-stopped
     volumes:
       - /var/log:/var/log
