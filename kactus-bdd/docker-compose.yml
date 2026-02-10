@@ -4,7 +4,7 @@ services:
     container_name: kactus-bdd
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD={MYSQL_ROOT_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     volumes:
       - mariadb_data:/var/lib/mysql
       - /opt/kactus/kactus-bdd/init.sql:/docker-entrypoint-initdb.d/init.sql
