@@ -48,7 +48,7 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
     networks:
-      - net-monitoring
+      - kactus-monitoring
 
 volumes:
   grafana_data:
