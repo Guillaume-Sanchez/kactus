@@ -7,9 +7,11 @@ services:
      ports:
        - "8080:80"
      environment:
+       - IPAM_TRUST_X_FORWARDED=true
+       - IPAM_BASE=/
        - TZ=Europe/Paris
        - IPAM_DATABASE_HOST=kactus-bdd
-       - IPAM_DATABASE_PASS={MYSQL_ROOT_PASSWORD}
+       - IPAM_DATABASE_PASS=${MYSQL_ROOT_PASSWORD}
        - IPAM_DATABASE_WEBHOST=%
      restart: unless-stopped
      volumes:
@@ -27,7 +29,7 @@ services:
      environment:
        - TZ=Europe/Paris
        - IPAM_DATABASE_HOST=kactus-bdd
-       - IPAM_DATABASE_PASS={MYSQL_ROOT_PASSWORD}
+       - IPAM_DATABASE_PASS=${MYSQL_ROOT_PASSWORD}
        - SCAN_INTERVAL=1h
      restart: unless-stopped
      volumes:
