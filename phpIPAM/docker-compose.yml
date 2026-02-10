@@ -32,8 +32,6 @@ services:
      restart: unless-stopped
      volumes:
        - phpipam-ca:/usr/local/share/ca-certificates:ro
-     depends_on:
-       - db-ipam
      cap_add:
        - NET_ADMIN
        - NET_RAW
