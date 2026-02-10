@@ -10,8 +10,8 @@ services:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
     networks:
-      - kactus-network
+      - kactus-public
 
 networks:
-  kactus-network:
+  kactus-public:
     external: true

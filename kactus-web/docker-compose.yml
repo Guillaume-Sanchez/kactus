@@ -1,35 +1,22 @@
 services:
-   db-wp:
-     image: mariadb:latest
-     volumes:
-       - db_data:/var/lib/mysql
-     networks:
-       - kactus-network
-     restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-       MYSQL_DATABASE: ${MYSQL_DATABASE}
-       MYSQL_USER: ${MYSQL_USER}
-       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-
    wordpress:
      image: wordpress:latest
      networks:
-       - kactus-network
+       - kactus-public
+       - kactus-private
      ports:
        - "80:80"
      restart: always
      environment:
-       WORDPRESS_DB_HOST: db-wp:3306
+       WORDPRESS_DB_HOST: kactus-bdd
        WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
        WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
      volumes:
        - /opt/kactus/kactus-web/wp-content/themes/Kactus:/var/www/html/wp-content/themes/Kactus
        - /opt/kactus/kactus-web/wp-config.php:/var/www/html/wp-config.php
 
-volumes:
-    db_data:
-
 networks:
-  kactus-network:
+  kactus-public:
+    external: true
+  kactus-private:
     external: true

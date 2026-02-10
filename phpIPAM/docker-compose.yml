@@ -2,20 +2,19 @@ services:
    web:
      image: phpipam/phpipam-www:latest
      networks:
-       - kactus-network
+       - kactus-public
+       - kactus-private
      ports:
        - "8080:80"
      environment:
-       - TZ=Europe/London
-       - IPAM_DATABASE_HOST=db-ipam
-       - IPAM_DATABASE_PASS=aucuneidee
+       - TZ=Europe/Paris
+       - IPAM_DATABASE_HOST=kactus-bdd
+       - IPAM_DATABASE_PASS={MYSQL_ROOT_PASSWORD}
        - IPAM_DATABASE_WEBHOST=%
      restart: unless-stopped
      volumes:
        - phpipam-logo:/phpipam/css/images/logo
        - phpipam-ca:/usr/local/share/ca-certificates:ro
-     depends_on:
-       - db-ipam
      cap_add:
        - NET_ADMIN
        - NET_RAW
@@ -23,11 +22,12 @@ services:
    cron:
      image: phpipam/phpipam-cron:latest
      networks:
-       - kactus-network
+       - kactus-public
+       - kactus-private
      environment:
-       - TZ=Europe/London
-       - IPAM_DATABASE_HOST=db-ipam
-       - IPAM_DATABASE_PASS=aucuneidee
+       - TZ=Europe/Paris
+       - IPAM_DATABASE_HOST=kactus-bdd
+       - IPAM_DATABASE_PASS={MYSQL_ROOT_PASSWORD}
        - SCAN_INTERVAL=1h
      restart: unless-stopped
      volumes:
@@ -38,21 +38,12 @@ services:
        - NET_ADMIN
        - NET_RAW
 
-   db-ipam:
-     image: mariadb:latest
-     networks:
-       - kactus-network
-     environment:
-       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-     restart: unless-stopped
-     volumes:
-       - phpipam-db-data:/var/lib/mysql
-
 volumes:
-   phpipam-db-data:
    phpipam-logo:
    phpipam-ca:
 
 networks:
-  kactus-network:
+  kactus-public:
+    external: true
+  kactus-private:
     external: true

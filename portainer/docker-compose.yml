@@ -18,8 +18,8 @@ services:
 
 volumes:
   portainer_data:
-    external: true # Mets 'true' si le volume existe déjà, sinon retire cette ligne
+    external: true
 
 networks:
-  kactus-network:
+  kactus-public:
     external: true

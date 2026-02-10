@@ -2,13 +2,13 @@ services:
   kactus-intra:
     build: .
     container_name: kactus-intra
-    image: kactus-intra:latest    
+    image: kactus-intra:latest
     restart: unless-stopped
     networks:
-      - kactus-network
+      - kactus-public
     ports:
       - "8081:80"
 
 networks:
-  kactus-network:
+  kactus-public:
     external: true

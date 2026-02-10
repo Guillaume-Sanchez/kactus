@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 1.1.2
+# version: 1.1.3
 
 echo "============================"
 echo "🚀 Clonage du dépôt GitHub de Kactus dans ~/kactus"
@@ -20,9 +20,11 @@ echo "🚀 Mise en place de fichiers de configuration"
 echo "============================"
 sudo mkdir -p /opt/kactus/grafana/
 sudo mkdir -p /opt/kactus/kactus-web/
+sudo mkdir -p /opt/kactus/kactus-bdd/
 sudo cp grafana/*-config.yml /opt/kactus/grafana/
 sudo cp kactus-web/wp-config.php /opt/kactus/kactus-web/
 sudo cp -r kactus-web/wp-content /opt/kactus/kactus-web/
+sudo cp kactus-bdd/*.sql /opt/kactus/kactus-bdd/
 echo "============================"
 echo "🚀 Mise en place de la crontab pour les scans Trivy"
 echo "============================"
