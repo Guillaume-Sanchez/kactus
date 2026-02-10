@@ -9,10 +9,10 @@ clients:
   - url: http://loki:3100/loki/api/v1/push
 
 scrape_configs:
-  - job_name: trivy_security
+  - job_name: trivy_report
     static_configs:
       - targets:
           - localhost
         labels:
-          job: trivy_logs
-          __path__: /var/log/trivy-results.log
+          job: security_scan 
+          __path__: /var/log/trivy.log
