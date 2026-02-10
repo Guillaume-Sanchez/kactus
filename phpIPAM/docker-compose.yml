@@ -7,7 +7,6 @@ services:
      ports:
        - "8080:80"
      environment:
-       - IPAM_TRUST_X_FORWARDED=true
        - TZ=Europe/Paris
        - IPAM_DATABASE_HOST=kactus-bdd
        - IPAM_DATABASE_PASS=${MYSQL_ROOT_PASSWORD}
