@@ -21,7 +21,7 @@ echo "============================"
 sudo mkdir -p /opt/kactus/grafana/
 sudo mkdir -p /opt/kactus/kactus-web/
 sudo mkdir -p /opt/kactus/kactus-bdd/
-sudo cp grafana/*-config.yml /opt/kactus/grafana/
+sudo cp monitoring/*-config.yml /opt/kactus/grafana/
 sudo cp kactus-web/wp-config.php /opt/kactus/kactus-web/
 sudo cp -r kactus-web/wp-content /opt/kactus/kactus-web/
 sudo cp kactus-bdd/*.sql /opt/kactus/kactus-bdd/
@@ -35,9 +35,10 @@ rm kactus_crontab
 echo "============================"
 echo "✅ Crontab mise à jour."
 echo "============================"
-echo "🚀 Création du réseau Docker kactus-network"
+echo "🚀 Création du réseau Docker kactus-public et kactus-private"
 echo "============================"
-docker network create kactus-network
+docker network create kactus-public
+docker network create kactus-private
 echo "============================"
 echo "✨ Installation de la Primo-Install terminée"
 echo "============================"
