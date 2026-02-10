@@ -4,6 +4,6 @@ CREATE USER IF NOT EXISTS 'kactus'@'%' IDENTIFIED BY 'ZySS#gFcYR5AcOUr';
 GRANT ALL PRIVILEGES ON wordpress.* TO 'kactus'@'%';
 
 -- Création de la base et user PhpIPAM
-CREATE USER IF NOT EXISTS 'phpipamIDENTIFIED BY 'mk!vT6PVYtmXPYAe';
+CREATE USER IF NOT EXISTS 'phpipam'@'%' IDENTIFIED BY 'mk!vT6PVYtmXPYAe';
 
 FLUSH PRIVILEGES;
