@@ -1,5 +1,5 @@
 services:
-  kactus-bdd:
+  mariadb:
     image: mariadb:latest
     restart: always
     environment:
