@@ -3,7 +3,7 @@ services:
     image: grafana/grafana:latest
     restart: unless-stopped
     networks:
-      - kactus-public
+      - kactus-monitoring
     environment:
       - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
@@ -17,7 +17,7 @@ services:
   loki:
     image: grafana/loki:latest
     networks:
-      - kactus-public
+      - kactus-monitoring
     restart: unless-stopped
     ports:
       - "3100:3100"
