@@ -25,7 +25,7 @@ services:
   prometheus:
     image: prom/prometheus:latest
     networks:
-      - kactus-public
+      - kactus-monitoring
     volumes:
       - "/opt/kactus/grafana/prometheus-config.yml:/etc/prometheus/prometheus.yml"
     ports:
@@ -34,15 +34,25 @@ services:
   promtail:
     image: grafana/promtail:latest
     networks:
-      - kactus-public
+      - kactus-monitoring
     restart: unless-stopped
     volumes:
       - /var/log:/var/log
       - /opt/kactus/grafana/promtail-config.yml:/etc/promtail/config.yml
 
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+      - net-monitoring
+
 volumes:
   grafana_data:
 
 networks:
-  kactus-public:
+  kactus-monitoring:
     external: true

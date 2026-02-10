@@ -39,6 +39,7 @@ echo "🚀 Création du réseau Docker kactus-public et kactus-private"
 echo "============================"
 docker network create kactus-public
 docker network create kactus-private
+docker network create kactus-monitoring
 echo "============================"
 echo "✨ Installation de la Primo-Install terminée"
 echo "============================"
