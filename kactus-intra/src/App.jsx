@@ -16,28 +16,28 @@ const KactusDashboard = () => {
     {
       title: "Site Web Corporate",
       desc: "Accès au CMS WordPress pour la gestion du contenu marketing et vitrine.",
-      link: "https://kactus.guillaume-sanchez.fr", // Port WordPress
+      link: "http://192.168.1.242:80", // Port WordPress
       status: "En ligne",
       statusColor: colors.primary
     },
     {
       title: "Monitoring & Logs",
       desc: "Supervision de l'infrastructure via Grafana. Visualisation des métriques Docker.",
-      link: "https://monitoring.kactus.guillaume-sanchez.fr", // Port Grafana
+      link: "http://192.168.1.242:3000", // Port Grafana
       status: "Actif",
       statusColor: colors.primary
     },
     {
       title: "Gestion IP (phpIPAM)",
       desc: "Outil d'administration des adresses IP et du plan d'adressage réseau.",
-      link: "https://phpipam.kactus.guillaume-sanchez.fr", // Port phpIPAM
+      link: "http://192.168.1.242:8080", // Port phpIPAM
       status: "Actif",
       statusColor: colors.primary
     },
     {
       title: "Portail de Gestion d'infrastructure",
       desc: "Interface d'administration des services Docker et de l'infrastructure serveur (Portainer).",
-      link: "https://portainer.kactus.guillaume-sanchez.fr", // Port Portainer (exemple)
+      link: "http://192.168.1.242:9000", // Port Portainer (exemple)
       status: "Actif",
       statusColor: colors.primary
     }
