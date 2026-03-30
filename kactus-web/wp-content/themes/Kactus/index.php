@@ -32,7 +32,7 @@
                 <a href="#services" class="btn-primary">Découvrir nos services</a>
             </div>
             <div class="hero-image">
-                <img src="<?php echo get_template_directory_uri(); ?>/imageskactus_logo.png" alt="Illustration Kactus">
+                <img src="<?php echo get_template_directory_uri(); ?>/images/kactus_logo.png" alt="Illustration Kactus">
             </div>
         </div>
     </section>
