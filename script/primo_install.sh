@@ -29,7 +29,10 @@ echo "============================"
 echo "🚀 Mise en place de la crontab pour les scans Trivy"
 echo "============================"
 crontab -l > kactus_crontab
-echo "0 2 * * * cd ~/kactus/trivy && ./scan_trivy.sh" >> kactus_crontab
+echo "0 6 * * * /home/admkactus/kactus/trivy/scan_trivy.sh" >> kactus_crontab
+echo "0 12 * * * /home/admkactus/kactus/trivy/scan_trivy.sh" >> kactus_crontab
+echo "0 18 * * * /home/admkactus/kactus/trivy/scan_trivy.sh" >> kactus_crontab
+echo "0 0 * * * /home/admkactus/kactus/trivy/scan_trivy.sh" >> kactus_crontab
 crontab kactus_crontab
 rm kactus_crontab
 echo "============================"
