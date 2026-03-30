@@ -30,8 +30,8 @@
 // $_SERVER['SERVER_PORT'] = 443;
 
 // On verrouille les URLs du site (ça écrase la base de données)
-define('WP_HOME', 'https://kactus.guillaume-sanchez.fr');
-define('WP_SITEURL', 'https://kactus.guillaume-sanchez.fr');
+//define('WP_HOME', 'https://kactus.guillaume-sanchez.fr');
+//define('WP_SITEURL', 'https://kactus.guillaume-sanchez.fr');
 
 // Force l'admin aussi
 define('FORCE_SSL_ADMIN', true);
