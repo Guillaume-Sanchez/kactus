@@ -1,6 +1,6 @@
 services:
    wordpress:
-     image: wordpress:alpine
+     image: wordpress:lastest
      container_name: kactus-web
      networks:
        - kactus-public
