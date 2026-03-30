@@ -26,8 +26,8 @@
 // a helper function to lookup "env_FILE", "env", then fallback
 
 /* Forcer le iHTTPS derriere un reverse proxy */
-$_SERVER['HTTPS'] = 'on';
-$_SERVER['SERVER_PORT'] = 443;
+// $_SERVER['HTTPS'] = 'on';
+// $_SERVER['SERVER_PORT'] = 443;
 
 // On verrouille les URLs du site (ça écrase la base de données)
 define('WP_HOME', 'https://kactus.guillaume-sanchez.fr');
