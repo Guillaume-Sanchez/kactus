@@ -20,11 +20,12 @@ echo "Mise en place de fichiers de configuration"
 echo "============================"
 sudo mkdir -p /opt/kactus/grafana/
 sudo mkdir -p /opt/kactus/kactus-web/
-sudo mkdir -p /opt/kactus/kactus-bdd/
+sudo mkdir -p /opt/kactus/kactus-bdd/backups/
 sudo cp monitoring/*-config.yml /opt/kactus/grafana/
 sudo cp kactus-web/wp-config.php /opt/kactus/kactus-web/
 sudo cp -r kactus-web/wp-content /opt/kactus/kactus-web/
 sudo cp kactus-bdd/*.sql /opt/kactus/kactus-bdd/
+sudo chown -Rf $USER:$USER /opt/kactus/
 echo "============================"
 echo "Mise en place de la crontab pour les scans Trivy"
 echo "============================"

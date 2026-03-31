@@ -4,7 +4,7 @@ source /home/admkactus/.env
 
 # --- CONFIGURATION ---
 CONTAINER_NAME="kactus-bdd"           
-BACKUP_DIR="/opt/kactus-bdd/backups/kactus"
+BACKUP_DIR="/opt/kactus/kactus-bdd/backups/"
 DATE=$(date +%Y-%m-%d_%Hh%M)
 # Créer le dossier s'il n'existe pas
 mkdir -p $BACKUP_DIR
