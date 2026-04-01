@@ -5,7 +5,7 @@ services:
        - kactus-public
        - kactus-private
      ports:
-       - "8080:80"
+       - "8180:80"
      environment:
        - TZ=Europe/Paris
        - IPAM_DATABASE_HOST=kactus-bdd
