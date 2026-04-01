@@ -2,7 +2,7 @@
 # Copyright (c) 2021-2025 Guillaume Sanchez
 # Author: Guillaume Sanchez
 # License: MIT | https://github.com/Guillaume-Sanchez/kactus
-# version: 1.1.4
+# version: 1.1.5
 
 echo "============================"
 echo "Clonage du dépôt GitHub de Kactus dans ~/kactus"
@@ -50,11 +50,13 @@ chmod 600 /home/admkactus/.env
 echo "============================"
 echo "Crontab mise à jour."
 echo "============================"
-echo "Création du réseau Docker kactus-public et kactus-private"
+echo "Création des réseau Docker kactus-lab"
 echo "============================"
 docker network create kactus-public
 docker network create kactus-private
 docker network create kactus-monitoring
+docker network connect kactus-monitoring portainer
+docker network disconnect bridge portainer
 echo "============================"
 echo "Installation de la Primo-Install terminée"
 echo "============================"
