@@ -49,8 +49,6 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
     networks:
       - kactus-monitoring
-    ports:
-      - 8080:8080
 
 volumes:
   grafana_data:
