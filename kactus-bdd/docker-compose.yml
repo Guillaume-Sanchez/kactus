@@ -1,6 +1,6 @@
 services:
   kactus-bdd:
-    image: mariadb:latest
+    image: mariadb:11.8
     container_name: kactus-bdd
     restart: always
     environment:

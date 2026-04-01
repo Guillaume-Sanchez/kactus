@@ -1,6 +1,6 @@
 services:
    web:
-     image: phpipam/phpipam-www:latest
+     image: phpipam/phpipam-www:1.7
      networks:
        - kactus-public
        - kactus-private
@@ -20,7 +20,7 @@ services:
        - NET_RAW
 
    cron:
-     image: phpipam/phpipam-cron:latest
+     image: phpipam/phpipam-cron:1.7
      networks:
        - kactus-public
        - kactus-private

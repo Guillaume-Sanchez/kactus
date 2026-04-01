@@ -1,6 +1,6 @@
 services:
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana:12.1.0
     restart: unless-stopped
     networks:
       - kactus-monitoring
@@ -15,7 +15,7 @@ services:
       - loki
 
   loki:
-    image: grafana/loki:latest
+    image: grafana/loki:3.5.0
     networks:
       - kactus-monitoring
     restart: unless-stopped
@@ -23,7 +23,7 @@ services:
       - "3100:3100"
 
   prometheus:
-    image: prom/prometheus:latest
+    image: prom/prometheus:v3.1.0
     networks:
       - kactus-monitoring
     volumes:
@@ -32,7 +32,7 @@ services:
       - 9090:9090
 
   promtail:
-    image: grafana/promtail:latest
+    image: grafana/promtail:3.5.0
     networks:
       - kactus-monitoring
     restart: unless-stopped
@@ -41,7 +41,7 @@ services:
       - /opt/kactus/grafana/promtail-config.yml:/etc/promtail/config.yml
 
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:latest
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:ro

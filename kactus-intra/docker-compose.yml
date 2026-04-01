@@ -2,7 +2,7 @@ services:
   kactus-intra:
     build: .
     container_name: kactus-intra
-    image: kactus-intra:latest
+    image: kactus-intra:v1.0.0
     restart: unless-stopped
     networks:
       - kactus-public
