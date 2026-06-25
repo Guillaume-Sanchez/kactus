@@ -2,7 +2,7 @@ services:
   kactus-bdd:
     image: mariadb:11.8
     container_name: kactus-bdd
-    restart: always
+    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     volumes:

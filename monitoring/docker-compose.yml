@@ -26,6 +26,7 @@ services:
     image: prom/prometheus:v3.1.0
     networks:
       - kactus-monitoring
+    restart: unless-stopped
     volumes:
       - "/opt/kactus/grafana/prometheus-config.yml:/etc/prometheus/prometheus.yml"
     ports:
@@ -49,6 +50,7 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
     networks:
       - kactus-monitoring
+    restart: unless-stopped
 
 volumes:
   grafana_data:
